@@ -7,8 +7,9 @@ var MainScreen = Screen.extend({
         this.display('main_screen'); 
         
         // Set handlers
-        this.html.find(".btn-control").click(function(){ fabrica.screens.control.enter(); });
-        this.html.find(".btn-make"   ).click(function(){ fabrica.screens.make.enter(); });
+        this.html.find(".btn-control"      ).off().click(function(){ fabrica.screens.control.enter(); });
+        this.html.find(".btn-make"         ).off().click(function(){ fabrica.screens.make.enter(); });
+        this.html.find(".btn-configuration").off().click(function(){ fabrica.screens.configuration.enter(); });
 
     }
 

@@ -1,0 +1,3 @@
+[submodule "static/js/sh"]
+	path = static/js/sh
+	url = https://github.com/lautr3k/Smoothie-Happy.git

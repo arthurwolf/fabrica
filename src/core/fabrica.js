@@ -5,6 +5,7 @@ var Fabrica = Class({
     // Constructor method
     create: function(){
         this.screens = {};
+        this.screen_stack = [];
     },
 
     // Add a new screen to the list
@@ -22,7 +23,16 @@ var Fabrica = Class({
                 }
             });
         });
-    }
+    },
+
+    // A screen was entered, remember it is the current screen, and add it to the stack
+    entered_screen: function( screen ){
+        // Remember the current screen
+        this.current_screen = screen;
+
+        // Push the current screen to the stack
+        this.screen_stack.push( screen );
+    } 
 
 });
 

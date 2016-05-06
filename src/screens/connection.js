@@ -6,9 +6,8 @@ var ConnectionScreen = Screen.extend({
         this.display('connection_screen');
 
         // Add handlers
-        this.html.find(".btn-connect").click(function(){ fabrica.screens.connection.attempt_connection(); });
-
-        // TODO : Add auto-detection of IP and remembering last-used IPs
+        this.html.find(".btn-connect").off().click(function(){ fabrica.screens.connection.attempt_connection(); });
+        this.html.find(".btn-start-search").off().click(function(){ fabrica.screens.network_scan.enter(); });
     },
 
     attempt_connection: function(){

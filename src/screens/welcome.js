@@ -9,7 +9,7 @@ var WelcomeScreen = Screen.extend({
         //TODO : Make "do not show this next time" actually do what it says
 
         // Add handler
-        this.html.find(".btn_next").click(function(){ fabrica.screens.main.enter(); });
+        this.html.find(".btn_next").off().click(function(){ fabrica.screens.main.enter(); });
     }, 
 
     on_initialization_complete: function(){

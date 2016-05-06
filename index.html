@@ -82,12 +82,10 @@
 <style rel='stylesheet'>
 /* Allows full-height elements */
 
-body,html      { height:100% }
-#main_screen   { height:100% }
-.fill-height * { height:100% }
-.fill-height   { height:100% }
-
-
+body,html      { height:100%; }
+#main_screen   { height:100%; }
+.fill-height * { height:100%; }
+.fill-height   { height:100%; }
 
 
 
@@ -105,9 +103,18 @@ body,html      { height:100% }
       
       <div class="text-center">
         <h1>Connection</h1>
-        <p class="lead">We are attempting automated network connection. </p>
-        <p class="lead">You can also manually enter the IP address for the machine to connect to bellow :</p>
       </div>
+      <br/>
+      <div> 
+        <p> This interface connects to your controller board over your local network. </p>
+        <p> In order to operate, we need to find where on the network your controller board is located ( it's «IP address» ) </p>
+        <p> This page lets you run a search for that address, enter one manually, or use a previously known address </p>
+      </div>
+      <h2> Automated detection </h2>
+        <p> If you do not know the address for your machine, we can try to automatically locate it </p>
+        <div class="col-md-10"></div> 
+        <button class="col-md-2 btn btn-default btn-start-search"> <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Start a search </button>
+
       <div class="bs-callout bs-callout-danger hidden error-ip">
         <h4>Connection error</h4>
         No answer could be found at the IP address you provided : <kbd></kbd> 
@@ -117,13 +124,79 @@ body,html      { height:100% }
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
       <div class="container">
-        <button type="button" class="btn btn-default navbar-btn navbar-left"> 
+        <button type="button" class="btn btn-default navbar-btn navbar-left btn-help" src="screens/connection.html"> 
             <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Help
         </button>
         <a href="#" class="btn navbar-btn navbar-right btn-default btn-connect col-md-2">Connect</a>
         <form class="navbar-form navbar-right">
             <div class="form-group">
               <input class="form-control input-ip" placeholder="IP Address" type="text" value="192.168.0.20">
+            </div>
+        </form>
+      </div>
+    </nav>
+
+</screen>
+
+
+
+
+<screen id="network_scan_screen" class="hidden">
+
+    <div class="container scan-info">
+
+      <div class="text-center">
+        <h1>Network scan</h1>
+      </div>
+
+      <p> Here you can enter an IP range or expression specifying where to look for an active board: </p>
+
+      <div class="bs-callout bs-callout-info">
+          <h4>Supported expressions</h4>
+          <p>The following expressions are supported :</p> 
+          <ul>
+              <li> Wildcard  : <kbd>192.168.1.*</kbd> </li>
+              <li> Single IP : <kbd>192.168.1.100</kbd>  </li>
+              <li> IP Range  : <kbd>192.168.1.100-120</kbd> </li>
+              <li> Hostname  : <kbd>my.smoothie.board</kbd>  </li>
+              <li> Mixed     : <kbd>192.168.1.100, my.smoothie.board</kbd>  </li>
+          </ul>
+      </div>
+
+      <p> Please enter an expression at the bottom of the screen then click on «Search» </p>
+
+    </div>
+
+    <div class="container scan-ongoing">
+
+      <div class="text-center">
+        <h1>Scanning the network</h1>
+      </div>
+      <br/>
+
+      <p> The scanner is currently looking at : <span class="currently-scanning"></span> </p>
+
+      <div class="found-machines">
+        <h2> Found machines </h2>
+        <br/>
+        <p> The following machines were found on the network </p>
+        <table class="machine-list table table-stripped">
+            <tr><th>Branch</th><th>Date</th><th>Commit</th><th>Microcontroller</th><th>Speed</th><th> Connect </th></tr>
+            <tr class="hidden"><td></td></td>
+        </table>
+      </div>
+
+    </div>
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+      <div class="container">
+        <button type="button" class="btn btn-default navbar-btn navbar-left btn-help" src="screens/connection.html"> 
+            <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Help
+        </button>
+        <a href="#" class="btn navbar-btn navbar-right btn-default col-md-2 btn-scan">Search</a>
+        <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <input class="form-control input-expression" placeholder="Search expression" type="text" value="192.168.0.*">
             </div>
         </form>
       </div>
@@ -157,7 +230,7 @@ body,html      { height:100% }
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
       <div class="container">
-        <button type="button" class="btn btn-default navbar-btn navbar-left"> 
+        <button type="button" class="btn btn-default navbar-btn navbar-left btn-help"> 
             <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Help
         </button>
       </div>
@@ -231,12 +304,13 @@ body,html      { height:100% }
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
       <div class="container">
-        <button type="button" class="btn btn-default navbar-btn navbar-left col-md-2"> 
+        <button type="button" class="btn btn-default navbar-btn navbar-left col-md-2 btn-help"> 
             <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Help
         </button>
-        <button type="button" class="btn btn-default navbar-btn navbar-right col-md-2">
+        <button type="button" class="btn btn-default navbar-btn navbar-right col-md-2 btn-configuration">
             <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Configuration
         </button>
+
       </div>
     </nav>
 
@@ -265,7 +339,7 @@ body,html      { height:100% }
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
       <div class="container">
-        <button type="button" class="btn btn-default navbar-btn navbar-left col-md-2"> 
+        <button type="button" class="btn btn-default navbar-btn navbar-left col-md-2 btn-help"> 
             <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Help
         </button>
         <button type="button" class="btn btn-default navbar-btn navbar-right col-md-2 btn-back">
@@ -293,7 +367,7 @@ body,html      { height:100% }
 
     <nav class="navbar navbar-default navbar-fixed-bottom">
       <div class="container">
-        <button type="button" class="btn btn-default navbar-btn navbar-left col-md-2"> 
+        <button type="button" class="btn btn-default navbar-btn navbar-left col-md-2 btn-help"> 
             <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Help
         </button>
         <button type="button" class="btn btn-default navbar-btn navbar-right col-md-2 btn-back">
@@ -305,6 +379,1834 @@ body,html      { height:100% }
 </screen>
 
 
+
+
+
+<screen id="configuration_screen" class="hidden">
+
+  <div class="container">
+    <h2> Full machine configuration tool </h2>
+    <p> Use this tool to configure all aspects of your machine in a step-by-step process. </p>
+    <p> It is recommended using this wizard at least once when setting up a new machine </p>
+    <div class="row">
+        <div class="col-md-8"></div>
+        <div class="col-md-4">
+            <a class="btn btn-default btn-block" href="#" role="button">Start full configuration</a> 
+        </div>
+    </div>
+
+    <h2> Machine onfiguration tools </h2>
+    <p> Use these tools to configure each aspect of the machine separately. </p>
+    <div class="row">
+        <div class="col-md-8"></div>
+        <div class="col-md-4">
+            <a class="btn btn-default btn-block" href="#" role="button">Start full configuration</a> 
+        </div>
+    </div>
+ 
+    <h2> Raw machine configuration tool </h2>
+    <p> Use this tool to directly edit the configuration values individually </p>
+    <div class="row">
+        <div class="col-md-8"></div>
+        <div class="col-md-4">
+            <a class="btn btn-default btn-block btn-raw-configuration" href="#" role="button">Edit raw configuration</a> 
+        </div>
+    </div>
+
+    <div class="row">
+    </div>
+  </div>
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+      <div class="container">
+        <button type="button" class="btn btn-default navbar-btn navbar-left col-md-2 btn-help"> 
+            <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Help
+        </button>
+         <button type="button" class="btn btn-default navbar-btn navbar-right col-md-2 btn-back">
+            <span class="glyphicon glyphicon-back" aria-hidden="true"></span> Back
+        </button>
+      </div>
+    </nav>
+
+</screen>
+
+
+
+<screen id="raw_configuration_screen" class="hidden">
+  <div class="container">
+    <div class="row">
+        <h2> Raw configuration editing tool </h2>
+        <p> Here you can edit configuration options individually. </p> 
+        <p> Please select which section you would like to edit : </p>
+        <table class="table table-striped section_list">
+            <tr> <th> Section </th> <th> Description </th> </tr>
+        </table>
+        <table class="hidden">
+            <tr class="section_line"> 
+                <td>
+                    <a class="btn btn-default btn-block section-button" href="#" role="button"></a> 
+                </td> 
+                <td class="section-description"></td> 
+            </tr>
+        </table>
+   </div>
+  </div>
+  <br/><br/><br/>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+      <div class="container">
+        <button type="button" class="btn btn-default navbar-btn navbar-left col-md-2 btn-help"> 
+            <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Help
+        </button>
+         <button type="button" class="btn btn-default navbar-btn navbar-right col-md-2 btn-back">
+            <span class="glyphicon glyphicon-back" aria-hidden="true"></span> Back
+        </button>
+      </div>
+    </nav>
+</screen>
+
+<screen id="raw_configuration_section_screen" class="hidden">
+  <div class="container">
+    <div class="row">
+        <h2> Editing section : <span class="section_name"></span> </h2>
+        <p> Select a configuration option to act upon : </p>
+        <samp>
+        <table class="table table-striped option_list">
+            <tr> <th> Option </th> <th> Value </th> <th> Comment </th> <th> Select </th> </tr>
+        </table>
+        </samp>
+        <table class="hidden">
+            <tr class="option_line"> 
+                <td class="option_name"></td> 
+                <td class="option_value"></td> 
+                <td class="option_comment"></td> 
+                <td class="option_button"> <a class="btn btn-default btn-sm" href="#" role="button"> Change </a> </td>
+            </tr>
+        </table>
+    </div>
+  </div>
+  <br/><br/><br/>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+      <div class="container">
+        <button type="button" class="btn btn-default navbar-btn navbar-left col-md-2 btn-help"> 
+            <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Help
+        </button>
+         <button type="button" class="btn btn-default navbar-btn navbar-right col-md-2 btn-back">
+            <span class="glyphicon glyphicon-back" aria-hidden="true"></span> Back
+        </button>
+      </div>
+    </nav>
+</screen>
+
+<screen id="raw_configuration_option_screen" class="hidden">
+  <div class="container">
+    <div class="row">
+        <h2> Editing option : <kbd class="option_name"></kbd> </h2>
+        <h3> Value </h3>
+        <p> This option is currently set to the value « <samp class="option_current_value"></samp> » </p>
+        <h3> Description </h3>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title"></h3>
+            </div>
+            <div class="panel-body">
+            </div>
+        </div>
+        <h3> Edition </h3>
+        <div class="edit_boxes">
+            <div class="edit_box edit_speed hidden">
+                <form>
+                  <div class="form-group">
+                    <label for="speed-input">Enter new speed</label>
+                    <div class="input-group">
+                        <input type="text" id="speed-input" class="form-control" placeholder="">
+                        <div class="input-group-addon option-units"></div>
+                    </div>
+                  </div>
+                </form>
+            </div>
+            <div class="edit_box edit_number hidden">
+                 <form>
+                  <div class="form-group">
+                    <label for="number-input">Enter new number</label>
+                    <div class="input-group">
+                        <input type="text" id="number-input" class="form-control" placeholder="">
+                        <div class="input-group-addon option-units"></div>
+                    </div>
+                  </div>
+                </form>
+            </div>
+        </div>
+   </div>
+  </div>
+  <br/><br/><br/>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+      <div class="container">
+        <button type="button" class="btn btn-default navbar-btn navbar-left col-md-2 btn-help"> 
+            <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Help
+        </button>
+         <button type="button" class="btn btn-default navbar-btn navbar-right col-md-2 btn-back">
+            <span class="glyphicon glyphicon-back" aria-hidden="true"></span> Back
+        </button>
+      </div>
+    </nav>
+</screen>
+
+
+
+
+
+
+    <!-- HTML files for help screens -->
+
+<!-- Modal -->
+<div class="modal fade" id="connection_screen_help" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Connection screen help</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+    <!-- HTML files for miscalenous definitions -->
+
+<div class="hidden" id="option_definitions">
+
+    <div class="option" name="" type="" unit="" title="">
+        <div class="description">
+            <p> </p>
+        </div>
+    </div>
+
+    <div class="option" name="default_feed_rate" type="speed" unit="millimeters/minute" title="Default feed rate">
+        <div class="description">
+            <p> The feed rate is the speed for "feed" movements ( G1/G2/G3 ) during which the tool is active, as opposed to "seek" movements ( G0 ) during which the tool is inactive </p>
+            <p> This value is the default speed, that will be used for feed moves at boot time, until a speed is actually specificed by a <kbd>F</kbd> parameter </p>
+        </div>
+    </div>
+
+    <div class="option" name="default_seek_rate" type="speed" unit="millimeters/minute" title="Default seek rate">
+        <div class="description">
+            <p> The seek rate is the speed for "seek" movements ( G0 ) during which the tool is inactive, as opposed to "feed" movements ( G1/G2/G3 ) during which the tool is active </p>
+            <p> This value is the default speed, that will be used for seek moves at boot time, until a speed is actually specificed by a <kbd>F</kbd> parameter </p>
+        </div>
+    </div>
+
+    <div class="option" name="mm_per_arc_segment" type="number" unit="millimeters" title="Millimeters per arc segment">
+        <div class="description">
+            <p> Arcs ( generated by the G2/G3 G-codes ), are cut into small segments </p>
+            <p> This value determines how small the segments should be </p>
+            <p> Smaller values mean more precision, but also more processing power being used </p>
+        </div>
+    </div>
+
+    <div class="option" name="mm_per_line_segment" type="number" unit="millimeters" title="Millimeters per line segment">
+        <div class="description">
+            <p> Lines can be cut into smaller segments, but this is optional </p>
+            <p> If this value is set, lines will be cut into smaller segments, the length of which will not be longer than this value </p>
+            <p> This can be useful if your machine is exceptionally large, or if you are not using the cartesian arm solution, but is generally not used </p>
+        </div>
+    </div>
+
+    <div class="option" name="alpha_steps_per_mm" type="number" unit="steps/millimeter" title="Steps per millimeter for the alpha actuator">
+        <div class="description">
+            <p> The alpha actuator is typically the X axis on cartesian machines, and the first tower on delta machines. By default it controls the M1 motor driver. </p>
+            <p> This value sets the number of steps of the stepper motor to rotate, for the axis to move ( linearly ) one millimeter </p>
+            <p> Note that this value corresponds to the number of steps the microcontroller generates, therefore it refers to microsteps, not full stepper motor steps </p>
+        </div>
+    </div>
+
+    <div class="option" name="beta_steps_per_mm" type="number" unit="steps/millimeter" title="Steps per millimeter for the beta actuator">
+        <div class="description">
+            <p> The beta actuator is typically the Y axis on cartesian machines, and the second tower on delta machines. By default it controls the M2 motor driver. </p>
+            <p> This value sets the number of steps of the stepper motor to rotate, for the axis to move ( linearly ) one millimeter </p>
+            <p> Note that this value corresponds to the number of steps the microcontroller generates, therefore it refers to microsteps, not full stepper motor steps </p>
+        </div>
+    </div>
+
+    <div class="option" name="gamma_steps_per_mm" type="number" unit="steps/millimeter" title="Steps per millimeter for the gamma actuator">
+        <div class="description">
+            <p> The gamma actuator is typically the Z axis on cartesian machines, and the third tower on delta machines. By default it controls the M3 motor driver. </p>
+            <p> This value sets the number of steps of the stepper motor to rotate, for the axis to move ( linearly ) one millimeter </p>
+            <p> Note that this value corresponds to the number of steps the microcontroller generates, therefore it refers to microsteps, not full stepper motor steps </p>
+        </div>
+    </div>
+
+    <div class="option" name="arm_solution" type="???" unit="???" title="Arm solution">
+        <div class="description">
+            <p>Sets the arm solution for this machine</p>
+            <p>The arm solution converts position in millimetres into actuator positions ( usually in steps )</p>
+            <p>On cartesian machines those are proportional to each other, but for example on a linear delta machine, some fancy math is required for the conversion</p>
+            <p>Possible values : cartesian, corexy, linear_delta, rotatable_cartesian, morgan</p>
+        </div>
+    </div>
+
+    <div class="option" name="arm_length" type="???" unit="???" title="Arm length">
+        <div class="description">
+            <p>In the case of a linear_delta arm solution, this is the length of an arm from hinge to hinge</p>
+        </div>
+    </div>
+
+    <div class="option" name="arm_radius" type="???" unit="???" title="Arm radius">
+        <div class="description">
+            <p>In the case of a linear_delta arm solution, this is the horizontal distance from hinge to hinge when the effector is centered</p>
+        </div>
+    </div>
+
+    <div class="option" name="alpha_angle" type="???" unit="???" title="Alpha angle">
+        <div class="description">
+            <p>In the case of a rotatable_cartesian arm solution, angle by which the plane is rotated</p>
+        </div>
+    </div>
+
+    <div class="option" name="arm1_length" type="???" unit="???" title="Arm1 length">
+        <div class="description">
+            <p>In the case of a morgan arm solution, length of the first arm</p>
+        </div>
+    </div>
+
+    <div class="option" name="arm2_length" type="???" unit="???" title="Arm2 length">
+        <div class="description">
+            <p>In the case of a morgan arm solution, length of the second arm</p>
+        </div>
+    </div>
+
+    <div class="option" name="morgan_offset_x" type="???" unit="???" title="Morgan offset x">
+        <div class="description">
+            <p>In the case of a morgan arm solution, X offset</p>
+        </div>
+    </div>
+
+    <div class="option" name="morgan_offset_y" type="???" unit="???" title="Morgan offset y">
+        <div class="description">
+            <p>In the case of a morgan arm solution, Y offset</p>
+        </div>
+    </div>
+
+    <div class="option" name="axis_scaling_x" type="???" unit="???" title="Axis scaling x">
+        <div class="description">
+            <p>In the case of a morgan arm solution, scaling in the X axis</p>
+        </div>
+    </div>
+
+    <div class="option" name="axis_scaling_y" type="???" unit="???" title="Axis scaling y">
+        <div class="description">
+            <p>In the case of a morgan arm solution, scaling in the Y axis</p>
+        </div>
+    </div>
+
+    <div class="option" name="planner_queue_size" type="???" unit="???" title="Planner queue size">
+        <div class="description">
+            <p>Defines how many blocks ( line segments ) are stored in RAM for look-ahead acceleration calculation</p>
+            <p>Do not change this unless you know exactly what you are doing !</p>
+        </div>
+    </div>
+
+    <div class="option" name="acceleration" type="???" unit="???" title="Acceleration">
+        <div class="description">
+            <p>Acceleration in millimetres/second/second</p>
+            <p>Higher values make your machine faster and shakier, lower values make your machine slower and sturdier</p>
+            <p>This is generally proportional to the weight of the tool you are trying to move.</p>
+        </div>
+    </div>
+
+    <div class="option" name="z_acceleration" type="???" unit="???" title="Z acceleration">
+        <div class="description">
+            <p>Acceleration for Z only moves, same as acceleration but for movements of the Z axis</p>
+            <p>Do not set this value if you use a delta arm solution.</p>
+        </div>
+    </div>
+
+    <div class="option" name="acceleration_ticks_per_second" type="???" unit="???" title="Acceleration ticks per second">
+        <div class="description">
+            <p>Number of times per second the speed is updated</p>
+            <p>Do not modify unless you know exactly what you are doing !</p>
+        </div>
+    </div>
+
+    <div class="option" name="junction_deviation" type="???" unit="???" title="Junction deviation">
+        <div class="description">
+            <p>Similar to the old "max_jerk", in millimeters</p>
+            <p>Defines how much the machine slows down when decelerating proportional to the vector angle of change of direction</p>
+            <p>See here and here</p>
+            <p>Lower values mean being more careful, higher values means being faster and have more jerk</p>
+        </div>
+    </div>
+
+    <div class="option" name="z_junction_deviation" type="???" unit="???" title="Z junction deviation">
+        <div class="description">
+            <p>Junction deviation for Z only moves, -1 uses junction_deviation, 0 disables junction_deviation on z moves</p>
+            <p>Do not set this value if you use a delta arm solution.</p>
+        </div>
+    </div>
+
+    <div class="option" name="minimum_planner_speed" type="???" unit="???" title="Minimum planner speed">
+        <div class="description">
+            <p>Sets the minimum planner speed in millimetres/sec</p>
+            <p>This is the lowest speed the planner will ever set a move to</p>
+            <p>Not generally useful.</p>
+        </div>
+    </div>
+
+    <div class="option" name="microseconds_per_step_pulse" type="???" unit="???" title="Microseconds per step pulse">
+        <div class="description">
+            <p>Duration of step pulses to the stepper motor drivers, in microseconds</p>
+        </div>
+    </div>
+
+    <div class="option" name="base_stepping_frequency" type="???" unit="???" title="Base stepping frequency">
+        <div class="description">
+            <p>Base frequency for stepping, higher values gives smoother movement</p>
+            <p>Do not modify unless you know exactly what you are doing, 100khz is the only officially supported value.</p>
+        </div>
+    </div>
+
+    <div class="option" name="x_axis_max_speed" type="???" unit="???" title="X axis max speed">
+        <div class="description">
+            <p>Maximum allowable speed for the X axis, in millimetres/minute</p>
+            <p>Smoothie will never exceed that value for that axis.</p>
+        </div>
+    </div>
+
+    <div class="option" name="y_axis_max_speed" type="???" unit="???" title="Y axis max speed">
+        <div class="description">
+            <p>Maximum allowable speed for the Y axis, in millimetres/minute</p>
+            <p>Smoothie will never exceed that value for that axis.</p>
+        </div>
+    </div>
+
+    <div class="option" name="z_axis_max_speed" type="???" unit="???" title="Z axis max speed">
+        <div class="description">
+            <p>Maximum allowable speed for the Z axis, in millimetres/minute</p>
+            <p>Smoothie will never exceed that value for that axis.</p>
+        </div>
+    </div>
+
+    <!-- Stepper motors -->
+
+    <div class="option" name="alpha_step_pin" type="???" unit="???" title="Alpha step pin">
+        <div class="description">
+            <p>Pin for alpha stepper step signal</p>
+        </div>
+    </div>
+
+    <div class="option" name="alpha_dir_pin" type="???" unit="???" title="Alpha dir pin">
+        <div class="description">
+            <p>Pin for alpha stepper direction</p>
+        </div>
+    </div>
+
+    <div class="option" name="alpha_en_pin" type="???" unit="???" title="Alpha en pin">
+        <div class="description">
+            <p>Pin for alpha enable pin</p>
+        </div>
+    </div>
+
+    <div class="option" name="alpha_current" type="???" unit="???" title="Alpha current">
+        <div class="description">
+            <p>M1 stepper motor driver current, in Amperes.</p>
+        </div>
+    </div>
+
+    <div class="option" name="alpha_max_rate" type="???" unit="???" title="Alpha max rate">
+        <div class="description">
+            <p>Maximum allowable speed for this actuator ( as opposed to axis, they are the same on a cartesian machine, but not on a delta machine for example ), in millimetres/minute.</p>
+        </div>
+    </div>
+
+    <div class="option" name="beta_step_pin" type="???" unit="???" title="Beta step pin">
+        <div class="description">
+            <p>Pin for beta stepper step signal</p>
+        </div>
+    </div>
+
+    <div class="option" name="beta_dir_pin" type="???" unit="???" title="Beta dir pin">
+        <div class="description">
+            <p>Pin for beta stepper direction</p>
+        </div>
+    </div>
+
+    <div class="option" name="beta_en_pin" type="???" unit="???" title="Beta en pin">
+        <div class="description">
+            <p>Pin for beta enable</p>
+        </div>
+    </div>
+
+    <div class="option" name="beta_current" type="???" unit="???" title="Beta current">
+        <div class="description">
+            <p>M2 stepper motor driver current, in Amperes.</p>
+        </div>
+    </div>
+
+    <div class="option" name="beta_max_rate" type="???" unit="???" title="Beta max rate">
+        <div class="description">
+            <p>Maximum allowable speed for this actuator, in millimetres/minute.</p>
+        </div>
+    </div>
+
+    <div class="option" name="gamma_step_pin" type="???" unit="???" title="Gamma step pin">
+        <div class="description">
+            <p>Pin for gamma stepper step signal</p>
+        </div>
+    </div>
+
+    <div class="option" name="gamma_dir_pin" type="???" unit="???" title="Gamma dir pin">
+        <div class="description">
+            <p>Pin for gamma stepper direction</p>
+        </div>
+    </div>
+
+    <div class="option" name="gamma_en_pin" type="???" unit="???" title="Gamma en pin">
+        <div class="description">
+            <p>Pin for gamma enable</p>
+        </div>
+    </div>
+
+    <div class="option" name="gamma_current" type="???" unit="???" title="Gamma current">
+        <div class="description">
+            <p>M3 stepper motor driver current, in Amperes.</p>
+        </div>
+    </div>
+
+    <div class="option" name="gamma_max_rate" type="???" unit="???" title="Gamma max rate">
+        <div class="description">
+            <p>Maximum allowable speed for this actuator , in millimetres/minute.</p>
+        </div>
+    </div>
+
+    <!-- Communication -->
+
+    <div class="option" name="uart0.baud_rate" type="???" unit="???" title="Baud rate">
+        <div class="description">
+            <p>Baud rate for the default hardware serial port ( UART0, labelled "Serial" on the board, close to the USB connector )</p>
+            <p>Defaults to 9600 if undefined, or if the configuration file can not be read.</p>
+        </div>
+    </div>
+
+    <div class="option" name="second_usb_serial_enable" type="???" unit="???" title="Second usb serial enable">
+        <div class="description">
+            <p>This enables a second serial port over the USB connection ( for example to have both Pronterface and a terminal connected)</p>
+        </div>
+    </div>
+
+    <!-- Miscellaneous -->
+
+    <div class="option" name="leds_disable" type="???" unit="???" title="Leds disable">
+        <div class="description">
+            <p>Disable the 4 flashing LEDs on the board</p>
+        </div>
+    </div>
+
+    <div class="option" name="play_led_disable" type="???" unit="???" title="Play led disable">
+        <div class="description">
+            <p>Disable the "play" status LED</p>
+        </div>
+    </div>
+
+    <div class="option" name="pause_button_enable" type="???" unit="???" title="Pause button enable">
+        <div class="description">
+            <p>Enable the "pause" input button</p>
+        </div>
+    </div>
+
+    <div class="option" name="pause_button_pin" type="???" unit="???" title="Pause button pin">
+        <div class="description">
+            <p>Pin for the "pause" input button</p>
+        </div>
+    </div>
+
+    <div class="option" name="kill_button_enable" type="???" unit="???" title="Kill button enable">
+        <div class="description">
+            <p>Enable the "kill" button</p>
+        </div>
+    </div>
+
+    <div class="option" name="kill_button_pin" type="???" unit="???" title="Kill button pin">
+        <div class="description">
+            <p>Pin for the "kill" button</p>
+        </div>
+    </div>
+
+    <div class="option" name="msd_disable" type="???" unit="???" title="Msd disable">
+        <div class="description">
+            <p>Disable the MSD ( SD Card access over USB ) when set to true ( requires a special binary, which you can find here, will be ignored without the special binary)</p>
+        </div>
+    </div>
+
+    <div class="option" name="dfu_enable" type="???" unit="???" title="Dfu enable">
+        <div class="description">
+            <p>For Linux developers, set to true to enable DFU, which allows you to flash new firmwares over USB</p>
+        </div>
+    </div>
+
+    <div class="option" name="return_error_on_unhandled_gcode" type="???" unit="???" title="Return error on unhandled gcode">
+        <div class="description">
+            <p>If set to true, return an error if a G-code is received but not understood.</p>
+        </div>
+    </div>
+
+    <!-- Current control -->
+
+    <div class="option" name="currentcontrol_module_enable" type="???" unit="???" title="Currentcontrol module enable">
+        <div class="description">
+            <p>If set to true, enable digital control of the current settings of the stepper motor drivers</p>
+            <p>Note : this is dependent on the physical board type, and unless you are designing a new board you shouldn't have to modify these settings</p>
+        </div>
+    </div>
+
+    <div class="option" name="digipotchip" type="???" unit="???" title="Digipotchip">
+        <div class="description">
+            <p>Select the digipot chip with which to control the current for the stepper motor drivers</p>
+            <p>Supported chips are mcp4451 and ad5206</p>
+        </div>
+    </div>
+
+    <div class="option" name="digipot_max_current" type="???" unit="???" title="Digipot max current">
+        <div class="description">
+            <p>Maximum current that can be set</p>
+        </div>
+    </div>
+
+    <div class="option" name="digipot_factor" type="???" unit="???" title="Digipot factor">
+        <div class="description">
+            <p>Factor for converting the current into digipot values</p>
+        </div>
+    </div>
+
+    <div class="option" name="zeta_current" type="???" unit="???" title="Zeta current">
+        <div class="description">
+            <p>Current setting for the 6th stepper motor driver current control</p>
+        </div>
+    </div>
+
+    <div class="option" name="eta_current" type="???" unit="???" title="Eta current">
+        <div class="description">
+            <p>Current setting for the 7th stepper motor driver current control</p>
+        </div>
+    </div>
+
+    <div class="option" name="theta_current" type="???" unit="???" title="Theta current">
+        <div class="description">
+            <p>Current setting for the 8th stepper motor driver current control</p>
+        </div>
+    </div>
+
+    <!-- Player -->
+
+    <div class="option" name="on_boot_gcode" type="???" unit="???" title="On boot gcode">
+        <div class="description">
+            <p>G-code file to play when the board boots</p>
+            <p>This file will automaticaly be played when the board is done booting up</p>
+            <p>Useful for example if you want to home your printer when it boots, or do similar tasks.</p>
+        </div>
+    </div>
+
+    <div class="option" name="on_boot_gcode_enable" type="???" unit="???" title="On boot gcode enable">
+        <div class="description">
+            <p>If set to true, play the on_boot_gcode file when the board boots up</p>
+        </div>
+    </div>
+
+    <div class="option" name="after_suspend_gcode" type="???" unit="???" title="After suspend gcode">
+        <div class="description">
+            <p>G-code to execute automatically right after the suspend command is received, this is useful if you want to retract, or turn off heaters etc</p>
+            <p>The _ character gets converted into space</p>
+        </div>
+    </div>
+
+    <div class="option" name="before_resume_gcode" type="???" unit="???" title="Before resume gcode">
+        <div class="description">
+            <p>G-code to execute automatically right after the resume command is received, but before resuming execution</p>
+            <p>This is useful in particular to un-do what was done by after_suspend_gcode</p>
+            <p>The _ character gets converted into space</p>
+        </div>
+    </div>
+
+    <div class="option" name="leave_heaters_on_suspend" type="???" unit="???" title="Leave heaters on suspend">
+        <div class="description">
+            <p>If set to true, heaters are left ON when suspend is received</p>
+            <p>If set to false, heaters are turned OFF when suspend is received, and then turned back ON when resume is received.</p>
+        </div>
+    </div>
+
+    <!-- Extruder -->
+
+    <div class="option" name="extruder.module_name.enable" type="???" unit="???" title="Enable">
+        <div class="description">
+            <p>Whether to activate the extruder module at all</p>
+            <p>All configuration is ignored if false</p>
+            <p>Each time an extruder.module_name.enable line is encountered, an extruder module with the name «module_name» will be created.</p>
+        </div>
+    </div>
+
+    <div class="option" name="extruder.module_name.steps_per_mm" type="???" unit="???" title="Steps per mm">
+        <div class="description">
+            <p>Steps/millimetre for the extruder stepper motor</p>
+            <p>This is the number of steps to move one millimetre of filament</p>
+            <p>Learn more</p>
+        </div>
+    </div>
+
+    <div class="option" name="extruder.module_name.filament_diameter" type="???" unit="???" title="Filament diameter">
+        <div class="description">
+            <p>Filament diameter, in millimetres, used for volumetric extrusion control</p>
+            <p>Learn more</p>
+        </div>
+    </div>
+
+    <div class="option" name="extruder.module_name.default_feed_rate" type="???" unit="???" title="Default feed rate">
+        <div class="description">
+            <p>Default rate in millimetres/minute for moves where only the extruder moves</p>
+            <p>This is only used if you have never provided a feedrate via the F parameter</p>
+            <p>Once you specify a F parameter, it will be used as the Extruder feed rate until you reset the board.</p>
+        </div>
+    </div>
+
+    <div class="option" name="extruder.module_name.acceleration" type="???" unit="???" title="Acceleration">
+        <div class="description">
+            <p>Acceleration for the extruder stepper motor, in millimetres/second/second</p>
+        </div>
+    </div>
+
+    <div class="option" name="extruder.module_name.max_speed" type="???" unit="???" title="Max speed">
+        <div class="description">
+            <p>Maximum allowable speed for the extruder stepper motor, in millimetres/second</p>
+        </div>
+    </div>
+
+    <div class="option" name="extruder.module_name.step_pin" type="???" unit="???" title="Step pin">
+        <div class="description">
+            <p>Pin for extruder stepper motor driver's step signal</p>
+        </div>
+    </div>
+
+    <div class="option" name="extruder.module_name.dir_pin" type="???" unit="???" title="Dir pin">
+        <div class="description">
+            <p>Pin for extruder stepper motor driver's direction signal</p>
+        </div>
+    </div>
+
+    <div class="option" name="extruder.module_name.en_pin" type="???" unit="???" title="En pin">
+        <div class="description">
+            <p>Pin for extruder stepper motor driver's enable signal</p>
+        </div>
+    </div>
+
+    <div class="option" name="extruder.module_name.x_offset" type="???" unit="???" title="X offset">
+        <div class="description">
+            <p>Extruder offset from origin in millimetres for the X axis</p>
+            <p>This is useful when you have multiple extruders to specify the offset from each extruder to the first one.</p>
+        </div>
+    </div>
+
+    <div class="option" name="extruder.module_name.y_offset" type="???" unit="???" title="Y offset">
+        <div class="description">
+            <p>Extruder offset from origin in millimetres for the Y axis.</p>
+        </div>
+    </div>
+
+    <div class="option" name="extruder.module_name.z_offset" type="???" unit="???" title="Z offset">
+        <div class="description">
+            <p>Extruder offset from origin in millimetres for the Z axis.</p>
+        </div>
+    </div>
+
+    <div class="option" name="extruder.module_name.retract_length" type="???" unit="???" title="Retract length">
+        <div class="description">
+            <p>Retract length in millimetres</p>
+            <p>Retract is a retractation of the filament called using the G10 G-code</p>
+            <p>It is recovered ( reverted ) using the G11 G-code</p>
+            <p>Learn more about retractation</p>
+        </div>
+    </div>
+
+    <div class="option" name="extruder.module_name.retract_feedrate" type="???" unit="???" title="Retract feedrate">
+        <div class="description">
+            <p>Retract feed-rate ( filament speed ) in millimetres/second</p>
+        </div>
+    </div>
+
+    <div class="option" name="extruder.module_name.retract_recover_length" type="???" unit="???" title="Retract recover length">
+        <div class="description">
+            <p>Additional length when recovering ( if you retract by 1mm, you will be recovering by 1mm plus this value )</p>
+        </div>
+    </div>
+
+    <div class="option" name="extruder.module_name.retract_recover_feedrate" type="???" unit="???" title="Retract recover feedrate">
+        <div class="description">
+            <p>Recovery feed-rate in millimetres/second (should be less than retract feedrate)</p>
+        </div>
+    </div>
+
+    <div class="option" name="extruder.module_name.retract_zlift_length" type="???" unit="???" title="Retract zlift length">
+        <div class="description">
+            <p>Z-lift on retract in millimeters, set to 0 if you want to disable retraction Z-lift</p>
+            <p>Z-lift is a small increase in the Z axis position when retracting.</p>
+        </div>
+    </div>
+
+    <div class="option" name="extruder.module_name.retract_zlift_feedrate" type="???" unit="???" title="Retract zlift feedrate">
+        <div class="description">
+            <p>Z-lift feed-rate in millimetres/minute ( Note : mm/min NOT mm/sec)</p>
+        </div>
+    </div>
+
+    <div class="option" name="delta_current" type="???" unit="???" title="Delta current">
+        <div class="description">
+            <p>First extruder stepper motor driver ( M4 ) current in Amperes</p>
+        </div>
+    </div>
+
+    <div class="option" name="epsilon_current" type="???" unit="???" title="Epsilon current">
+        <div class="description">
+            <p>Second extruder stepper motor driver ( M5 ) current in Amperes</p>
+        </div>
+    </div>
+
+    <!-- Laser -->
+
+    <div class="option" name="laser_module_enable" type="???" unit="???" title="Laser module enable">
+        <div class="description">
+            <p>Whether to activate the laser module at all</p>
+            <p>All configuration is ignored if false</p>
+            <p>The laser module is used for laser cutting using a laser diode or CO2 laser tube.</p>
+        </div>
+    </div>
+
+    <div class="option" name="laser_module_pin" type="???" unit="???" title="Laser module pin">
+        <div class="description">
+            <p>This pin will control the laser</p>
+            <p>Pulse width will be modulated to vary power output ( PWM )</p>
+            <p>Note : PWM is available only on pins 2.0 to 2.5, 1.18, 1.20, 1.21, 1.23, 1.24, 1.26, 3.25 and 3.26</p>
+        </div>
+    </div>
+
+    <div class="option" name="laser_module_max_power" type="???" unit="???" title="Laser module max power">
+        <div class="description">
+            <p>This is the maximum duty cycle that will be applied to the laser</p>
+            <p>Value is from 0 to 1</p>
+        </div>
+    </div>
+
+    <div class="option" name="laser_module_tickle_power" type="???" unit="???" title="Laser module tickle power">
+        <div class="description">
+            <p>This duty cycle will be used for travel moves to keep the laser active without actually burning</p>
+            <p>Useful for some diode setups</p>
+            <p>Value is from 0 to 1</p>
+        </div>
+    </div>
+
+    <div class="option" name="laser_module_pwm_period" type="???" unit="???" title="Laser module pwm period">
+        <div class="description">
+            <p>PWM frequency expressed as the period in microseconds</p>
+        </div>
+    </div>
+
+    <!-- Temperature control -->
+
+    <div class="option" name="temperature_control.module_name.enable" type="???" unit="???" title="Enable">
+        <div class="description">
+            <p>Whether to activate this temperaturecontrol module</p>
+            <p>You can create as many temperaturecontrol modules as you want, simply by giving a new module a name, and setting it's enable option to true</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperature_control.module_name.thermistor_pin" type="???" unit="???" title="Thermistor pin">
+        <div class="description">
+            <p>Pin for the thermistor to read</p>
+            <p>ADC ports TH1 to TH4 are pins 0.23 to 0.26.</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperature_control.module_name.readings_per_second" type="???" unit="???" title="Readings per second">
+        <div class="description">
+            <p>How many times per second to read temperature from the sensor.</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperature_control.module_name.pwm_frequency" type="???" unit="???" title="Pwm frequency">
+        <div class="description">
+            <p>How many times per second to switch the heating element on or off</p>
+            <p>Set to a low value ( 20 ) if using a Solid State Relay.</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperature_control.module_name.heater_pin" type="???" unit="???" title="Heater pin">
+        <div class="description">
+            <p>Pin that controls the heater</p>
+            <p>This can be used to control a Mosfet on board or an external Solid State Relay</p>
+            <p>Set to nc if a readonly thermistor is being defined</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperature_control.module_name.thermistor" type="???" unit="???" title="Thermistor">
+        <div class="description">
+            <p>Set the thermistor model for this module</p>
+            <p>Several different common models are pre-defined, see here for a list</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperature_control.module_name.beta" type="???" unit="???" title="Beta">
+        <div class="description">
+            <p>Manually set the beta value for your thermistor</p>
+            <p>This is useful if your thermistor is not in the common pre-defined models.</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperature_control.module_name.r0" type="???" unit="???" title="R0">
+        <div class="description">
+            <p>Manually set the r0 resistance value for your thermistor</p>
+            <p>This is useful if your thermistor is not in the common pre-defined models</p>
+            <p>Besides beta and r0 which are properties of your thermistor, you can also set the r1, r2 and t0 values, but those are properties of your board so they usually never have to be changed.</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperature_control.module_name.get_m_code" type="???" unit="???" title="Get m code">
+        <div class="description">
+            <p>Calling this M-code will return the current temperature.</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperature_control.module_name.set_m_code" type="???" unit="???" title="Set m code">
+        <div class="description">
+            <p>This is the M-code for simply setting the temperature</p>
+            <p>For example here, the value is 104 so you use M104 S50 to set this module's heater's temperature to 50.</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperature_control.module_name.set_and_wait_m_code" type="???" unit="???" title="Set and wait m code">
+        <div class="description">
+            <p>This is the M-code for setting the temperature then waiting for that temperature to be reached before doing anything</p>
+            <p>For example here, the value is 109 so you use M109 S50 to set this module's heater's temperature to 50 and then wait.</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperature_control.module_name.designator" type="???" unit="???" title="Designator">
+        <div class="description">
+            <p>The letter this module's temperature will be identified as in the M105 command's answer</p>
+            <p>For example here the value is T, so M105 will answer ok T:23.4 /0.0 @0</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperature_control.module_name.p_factor" type="???" unit="???" title="P factor">
+        <div class="description">
+            <p>P factor for PID temperature regulation</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperature_control.module_name.i_factor" type="???" unit="???" title="I factor">
+        <div class="description">
+            <p>I factor for PID temperature regulation</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperature_control.module_name.d_factor" type="???" unit="???" title="D factor">
+        <div class="description">
+            <p>D factor for PID temperature regulation</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperature_control.module_name.max_pwm" type="???" unit="???" title="Max pwm">
+        <div class="description">
+            <p>Maximum PWM value for the heating element</p>
+            <p>This can be from 0 to 255</p>
+            <p>64 is a good value if driving a 12v resistor with 24v</p>
+            <p>255 is the default and the normal value if you are using the right voltage for your heating element.</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperature_control.module_name.bang_bang" type="???" unit="???" title="Bang bang">
+        <div class="description">
+            <p>Set to true to use bang bang control rather than PID</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperature_control.module_name.hysteresis" type="???" unit="???" title="Hysteresis">
+        <div class="description">
+            <p>Set to the temperature in degrees C to use as hysteresis for bang bang control</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperature_control.module_name.i_max" type="???" unit="???" title="I max">
+        <div class="description">
+            <p>Maximum value for the I variable in the PID control</p>
+            <p>This should usually be set to about the same value as max_pwm ( as a rule of thumb, it is not actually a pwm setting )</p>
+            <p>This helps with preventing overshoot when initially heating up</p>
+            <p>If you get a strong ( >10°C ) overshoot on startup, try setting this to a value lower than max_pwm</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperature_control.module_name.sensor" type="???" unit="???" title="Sensor">
+        <div class="description">
+            <p>Set the type of sensor used to read temperature</p>
+            <p>Values can be thermistor for the usual thermistor reading via ADC method, or max31855 to read values from a thermocouple over SPI</p>
+            <p>See Reading a thermocouple</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperature_control.module_name.chip_select_pin" type="???" unit="???" title="Chip select pin">
+        <div class="description">
+            <p>If the sensor is set to max31855, sets the chip select pin for the SPI port</p>
+            <p>This allows you to have multiple sensors sharing the same SPI port, as long as they each get a chip select ( CS ) pin.</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperature_control.module_name.spi_channel" type="???" unit="???" title="Spi channel">
+        <div class="description">
+            <p>If the sensor is set to max31855, SPI channel using which to talk to the thermocouple chip.</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperature_control.module_name.max_temp" type="???" unit="???" title="Max temp">
+        <div class="description">
+            <p>If set, no temperature above this will be accepted and if the temperature exceeds this value the system will be forced into a HALT state.</p>
+        </div>
+    </div>
+
+    <!-- Switch -->
+
+    <div class="option" name="switch.module_name.enable" type="???" unit="???" title="Enable">
+        <div class="description">
+            <p>Create and enable a new Switch module if set to true</p>
+            <p>Switch modules use commands or pins as inputs, to send commands or switch pins as output</p>
+            <p>Note this module is very versatile and can be used to do many different things</p>
+            <p>Parameters that are not defined will be ignored.</p>
+        </div>
+    </div>
+
+    <div class="option" name="switch.module_name.input_pin" type="???" unit="???" title="Input pin">
+        <div class="description">
+            <p>When this pin becomes high the switch changes to the ON state, and when it becomes low the switch changes to the OFF state</p>
+            <p>( see the input_pin_behavior option for more details }}</p>
+        </div>
+    </div>
+
+    <div class="option" name="switch.module_name.input_pin_behavior" type="???" unit="???" title="Input pin behavior">
+        <div class="description">
+            <p>If set to momentary when the input pin becomes high the switch changes to the ON state, and when it becomes low the switch changes to the OFF state</p>
+            <p>If set to toggle the input pin toggles the switch's state between ON and OFF.</p>
+        </div>
+    </div>
+
+    <div class="option" name="switch.module_name.input_on_command" type="???" unit="???" title="Input on command">
+        <div class="description">
+            <p>Calling this command sets the switch ON</p>
+        </div>
+    </div>
+
+    <div class="option" name="switch.module_name.input_off_command" type="???" unit="???" title="Input off command">
+        <div class="description">
+            <p>Calling this command sets the switch OFF</p>
+        </div>
+    </div>
+
+    <div class="option" name="switch.module_name.subcode" type="???" unit="???" title="Subcode">
+        <div class="description">
+            <p>the subcode that the input on or input off commands respond to M106.1</p>
+        </div>
+    </div>
+
+    <div class="option" name="switch.module_name.output_on_command" type="???" unit="???" title="Output on command">
+        <div class="description">
+            <p>This command is called when the switch changes to the ON state</p>
+        </div>
+    </div>
+
+    <div class="option" name="switch.module_name.output_off_command" type="???" unit="???" title="Output off command">
+        <div class="description">
+            <p>This command is called when the switch changes to the OFF state</p>
+        </div>
+    </div>
+
+    <div class="option" name="switch.module_name.output_pin" type="???" unit="???" title="Output pin">
+        <div class="description">
+            <p>This pin will be set low when the switch is OFF, and high when the switch is ON</p>
+        </div>
+    </div>
+
+    <div class="option" name="switch.module_name.output_type" type="???" unit="???" title="Output type">
+        <div class="description">
+            <p>Sets the type of output for the output_pin, if set to digital the pin can only be low or high, and if set to pwm the pin can be set to any Sigma-Delta PWM value between 0 and 255 using the S parameter, for example : M106 S127</p>
+            <p>If set to hwpwm will use Real PWM, but the selected output pin must be PWM capable</p>
+            <p>The S value will be the duty cycle in percent, NOTE the default is none which will disable the output entirely.</p>
+        </div>
+    </div>
+
+    <div class="option" name="switch.module_name.startup_state" type="???" unit="???" title="Startup state">
+        <div class="description">
+            <p>Statup state of the switch</p>
+            <p>If set to false the module is initialized OFF, if set to true the module is initualized ON</p>
+        </div>
+    </div>
+
+    <div class="option" name="switch.module_name.startup_value" type="???" unit="???" title="Startup value">
+        <div class="description">
+            <p>Statup value of the switch if the output_type is pwm.</p>
+        </div>
+    </div>
+
+    <div class="option" name="switch.module_name.max_pwm" type="???" unit="???" title="Max pwm">
+        <div class="description">
+            <p>Maximum value for the PWM output</p>
+            <p>(only used for pwm output type, not for hwpwm</p>
+        </div>
+    </div>
+
+    <div class="option" name="switch.module_name.pwm_period_ms" type="???" unit="???" title="Pwm period ms">
+        <div class="description">
+            <p>Period used by the H/W PWM, 20ms is 50Hz which is the default if not set</p>
+        </div>
+    </div>
+
+    <div class="option" name="switch.module_name.fail_safe_set_to" type="???" unit="???" title="Fail safe set to">
+        <div class="description">
+            <p>0 or 1 what to set the output pin to in case of a crash or HALT condition</p>
+        </div>
+    </div>
+
+    <div class="option" name="switch.module_name.ignore_on_halt" type="???" unit="???" title="Ignore on halt">
+        <div class="description">
+            <p>set to true to not set the fail safe value when a HALT condition is triggered</p>
+        </div>
+    </div>
+
+    <!-- Temperature Switch -->
+
+    <div class="option" name="temperatureswitch.module_name.enable" type="???" unit="???" title="Enable">
+        <div class="description">
+            <p>Create and enable a new TemperatureSwitch module if set to true</p>
+            <p>This module automatically toggles a Switch module at a specified temperature ( read from a TemperatureControl module ).</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperatureswitch.module_name.designator" type="???" unit="???" title="Designator">
+        <div class="description">
+            <p>This module does not read temperature by itself, it asks an existing TemperatureControl for it's current temperature</p>
+            <p>This is used to specify which module to read temperature from, and must match the designator for that module.</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperatureswitch.module_name.switch" type="???" unit="???" title="Switch">
+        <div class="description">
+            <p>This module does not have any output by itself, instead, it switches the state of an existing Switch module</p>
+            <p>Here you must speficy the name of that Switch module.</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperatureswitch.module_name.threshold_temp" type="???" unit="???" title="Threshold temp">
+        <div class="description">
+            <p>Turn the switch ON above this temperature, and OFF below this temperature</p>
+            <p>In °C.</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperatureswitch.module_name.heatup_poll" type="???" unit="???" title="Heatup poll">
+        <div class="description">
+            <p>Poll temperature at this frequency ( in seconds ) when heating up.</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperatureswitch.module_name.cooldown_poll" type="???" unit="???" title="Cooldown poll">
+        <div class="description">
+            <p>Poll temperature at this frequency ( in seconds ) when cooling down.</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperatureswitch.module_name.trigger" type="???" unit="???" title="Trigger">
+        <div class="description">
+            <p>can be level, rising, falling - level is the default</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperatureswitch.module_name.inverted" type="???" unit="???" title="Inverted">
+        <div class="description">
+            <p>will turn the switch off when the temp > target and vice versa when set true</p>
+        </div>
+    </div>
+
+    <div class="option" name="temperatureswitch.module_name.arm_mcode" type="???" unit="???" title="Arm mcode">
+        <div class="description">
+            <p>M code used to arm the edge triggered switch eg M1100 S1 arms it</p>
+        </div>
+    </div>
+
+    <!-- Spindle control -->
+
+    <div class="option" name="spindle_enable" type="???" unit="???" title="Spindle enable">
+        <div class="description">
+            <p>If set to true, enables the Spindle module, which uses an encoder to PID-control a PWM-modulated spindle motor</p>
+        </div>
+    </div>
+
+    <div class="option" name="spindle_pwm_pin" type="???" unit="???" title="Spindle pwm pin">
+        <div class="description">
+            <p>Output PWM pin (uses hardware PWM)</p>
+            <p>Note : hardware PWM is available only on pins 2.0 to 2.5, 1.18, 1.20, 1.21, 1.23, 1.24, 1.26, 3.25 and 3.26</p>
+        </div>
+    </div>
+
+    <div class="option" name="spindle_pwm_period" type="???" unit="???" title="Spindle pwm period">
+        <div class="description">
+            <p>PWM period to use in microseconds</p>
+        </div>
+    </div>
+
+    <div class="option" name="spindle_feedback_pin" type="???" unit="???" title="Spindle feedback pin">
+        <div class="description">
+            <p>Feedback input pin (must be Port 0 or 2, meaning the pin number must be 2.x or 0.x )</p>
+        </div>
+    </div>
+
+    <div class="option" name="spindle_pulses_per_rev" type="???" unit="???" title="Spindle pulses per rev">
+        <div class="description">
+            <p>Number of feedback pulses per revolution on the feedback input pin</p>
+        </div>
+    </div>
+
+    <div class="option" name="spindle_default_rpm" type="???" unit="???" title="Spindle default rpm">
+        <div class="description">
+            <p>RPM to use if none given in M3 command, in rotations/minute</p>
+        </div>
+    </div>
+
+    <div class="option" name="spindle_control_P" type="???" unit="???" title="Spindle control P">
+        <div class="description">
+            <p>PID P factor (unit is 1 / RPM)</p>
+        </div>
+    </div>
+
+    <div class="option" name="spindle_control_I" type="???" unit="???" title="Spindle control I">
+        <div class="description">
+            <p>PID I factor (unit is 1 / ( RPM x seconds ))</p>
+        </div>
+    </div>
+
+    <div class="option" name="spindle_control_D" type="???" unit="???" title="Spindle control D">
+        <div class="description">
+            <p>PID D factor (unit is 1 / (R PM / seconds ))</p>
+        </div>
+    </div>
+
+    <!-- Endstops -->
+
+    <div class="option" name="endstops_enable" type="???" unit="???" title="Endstops enable">
+        <div class="description">
+            <p>The endstop module is enabled if this is set to true</p>
+            <p>All of it's parameters are ignored otherwise.</p>
+        </div>
+    </div>
+
+    <div class="option" name="corexy_homing" type="???" unit="???" title="Corexy homing">
+        <div class="description">
+            <p>Set to true if this machine uses a corexy or a h-bot arm solution</p>
+        </div>
+    </div>
+
+    <div class="option" name="delta_homing" type="???" unit="???" title="Delta homing">
+        <div class="description">
+            <p>Set to true if this machine uses a linear_delta arm solution</p>
+        </div>
+    </div>
+
+    <div class="option" name="scara_homing" type="???" unit="???" title="Scara homing">
+        <div class="description">
+            <p>Set to true if this machine uses a scara arm solution</p>
+        </div>
+    </div>
+
+    <div class="option" name="alpha_min_endstop" type="???" unit="???" title="Alpha min endstop">
+        <div class="description">
+            <p>Alpha ( X axis or alpha tower ) minimum limit endstop</p>
+            <p>Set to nc if not installed on your machine.</p>
+        </div>
+    </div>
+
+    <div class="option" name="alpha_max_endstop" type="???" unit="???" title="Alpha max endstop">
+        <div class="description">
+            <p>Alpha ( X axis or alpha tower ) maximum limit endstop</p>
+            <p>Set to nc if not installed on your machine.</p>
+        </div>
+    </div>
+
+    <div class="option" name="alpha_homing_direction" type="???" unit="???" title="Alpha homing direction">
+        <div class="description">
+            <p>In which direction to home</p>
+            <p>If set to home_to_min, homing ( using the G28 G-code ) will move until it hits the minimum endstop and then set the current position to alpha_min</p>
+            <p>If set to home_to_max, homing will move until it hits the maximum endstop, and then set the current position to alpha_max</p>
+        </div>
+    </div>
+
+    <div class="option" name="alpha_min" type="???" unit="???" title="Alpha min">
+        <div class="description">
+            <p>This gets loaded after homing when alpha_homing_direction is set to home_to_min and the minimum endstop is hit.</p>
+        </div>
+    </div>
+
+    <div class="option" name="alpha_max" type="???" unit="???" title="Alpha max">
+        <div class="description">
+            <p>This gets loaded after homing when alpha_homing_direction is set to home_to_max and the maximum endstop is hit.</p>
+        </div>
+    </div>
+
+    <div class="option" name="beta_min_endstop" type="???" unit="???" title="Beta min endstop">
+        <div class="description">
+            <p>Beta ( Y axis or beta tower ) minimum limit endstop</p>
+            <p>Set to nc if not installed on your machine.</p>
+        </div>
+    </div>
+
+    <div class="option" name="beta_max_endstop" type="???" unit="???" title="Beta max endstop">
+        <div class="description">
+            <p>Beta ( Y axis or beta tower ) maximum limit endstop</p>
+            <p>Set to nc if not installed on your machine.</p>
+        </div>
+    </div>
+
+    <div class="option" name="beta_homing_direction" type="???" unit="???" title="Beta homing direction">
+        <div class="description">
+            <p>In which direction to home</p>
+            <p>If set to home_to_min, homing ( using the G28 G-code ) will move until it hits the minimum endstop and then set the current position to beta_min</p>
+            <p>If set to home_to_max, homing will move until it hits the maximum endstop, and then set the current position to beta_max</p>
+        </div>
+    </div>
+
+    <div class="option" name="beta_min" type="???" unit="???" title="Beta min">
+        <div class="description">
+            <p>This gets loaded after homing when beta_homing_direction is set to home_to_min and the minimum endstop is hit.</p>
+        </div>
+    </div>
+
+    <div class="option" name="beta_max" type="???" unit="???" title="Beta max">
+        <div class="description">
+            <p>This gets loaded after homing when beta_homing_direction is set to home_to_max and the maximum endstop is hit.</p>
+        </div>
+    </div>
+
+    <div class="option" name="gamma_min_endstop" type="???" unit="???" title="Gamma min endstop">
+        <div class="description">
+            <p>Gamma ( Z axis or gamma tower ) minimum limit endstop</p>
+            <p>Set to nc if not installed on your machine.</p>
+        </div>
+    </div>
+
+    <div class="option" name="gamma_max_endstop" type="???" unit="???" title="Gamma max endstop">
+        <div class="description">
+            <p>Gamma ( Z axis or gamma tower ) maximum limit endstop</p>
+            <p>Set to nc if not installed on your machine.</p>
+        </div>
+    </div>
+
+    <div class="option" name="gamma_homing_direction" type="???" unit="???" title="Gamma homing direction">
+        <div class="description">
+            <p>In which direction to home</p>
+            <p>If set to home_to_min, homing ( using the G28 G-code ) will move until it hits the minimum endstop and then set the current position to gamma_min</p>
+            <p>If set to home_to_max, homing will move until it hits the maximum endstop, and then set the current position to gamma_max</p>
+        </div>
+    </div>
+
+    <div class="option" name="gamma_min" type="???" unit="???" title="Gamma min">
+        <div class="description">
+            <p>This gets loaded after homing when gamma_homing_direction is set to home_to_min and the minimum endstop is hit.</p>
+        </div>
+    </div>
+
+    <div class="option" name="gamma_max" type="???" unit="???" title="Gamma max">
+        <div class="description">
+            <p>This gets loaded after homing when gamma_homing_direction is set to home_to_max and the maximum endstop is hit.</p>
+        </div>
+    </div>
+
+    <div class="option" name="homing_order" type="???" unit="???" title="Homing order">
+        <div class="description">
+            <p>Optional order in which axis will home, default is they all home at the same time, if this is set it will force each axis to home one at a time in the specified order</p>
+            <p>For example XZY means : X axis followed by Z, then Y last.</p>
+        </div>
+    </div>
+
+    <div class="option" name="alpha_limit_enable" type="???" unit="???" title="Alpha limit enable">
+        <div class="description">
+            <p>If set to true, the machine will stop if one of the alpha ( X axis or alpha tower ) endstops are hit</p>
+        </div>
+    </div>
+
+    <div class="option" name="beta_limit_enable" type="???" unit="???" title="Beta limit enable">
+        <div class="description">
+            <p>If set to true, the machine will stop if one of the beta ( Y axis or beta tower ) endstops are hit</p>
+        </div>
+    </div>
+
+    <div class="option" name="gamma_limit_enable" type="???" unit="???" title="Gamma limit enable">
+        <div class="description">
+            <p>If set to true, the machine will stop if one of the gamma ( Z axis or gamma tower ) endstops are hit</p>
+        </div>
+    </div>
+
+    <div class="option" name="alpha_fast_homing_rate_mm_s" type="???" unit="???" title="Alpha fast homing rate mm s">
+        <div class="description">
+            <p>Speed, in millimetres/second, at which to home for the alpha actuator ( X axis or alpha tower )</p>
+        </div>
+    </div>
+
+    <div class="option" name="beta_fast_homing_rate_mm_s" type="???" unit="???" title="Beta fast homing rate mm s">
+        <div class="description">
+            <p>Speed, in millimetres/second, at which to home for the beta actuator ( Y axis or beta tower )</p>
+        </div>
+    </div>
+
+    <div class="option" name="gamma_fast_homing_rate_mm_s" type="???" unit="???" title="Gamma fast homing rate mm s">
+        <div class="description">
+            <p>Speed, in millimetres/second, at which to home for the gamma actuator ( Z axis or gamma tower )</p>
+        </div>
+    </div>
+
+    <div class="option" name="alpha_homing_retract_mm" type="???" unit="???" title="Alpha homing retract mm">
+        <div class="description">
+            <p>Distance to retract the alpha actuator ( X axis or alpha tower ) once the endstop is first hit, before re-homing at a slower speed.</p>
+        </div>
+    </div>
+
+    <div class="option" name="beta_homing_retract_mm" type="???" unit="???" title="Beta homing retract mm">
+        <div class="description">
+            <p>Distance to retract the beta actuator ( Y axis or beta tower ) once the endstop is first hit, before re-homing at a slower speed.</p>
+        </div>
+    </div>
+
+    <div class="option" name="gamma_homing_retract_mm" type="???" unit="???" title="Gamma homing retract mm">
+        <div class="description">
+            <p>Distance to retract the alpha actuator ( Z axis or gamma tower ) once the endstop is first hit, before re-homing at a slower speed.</p>
+        </div>
+    </div>
+
+    <div class="option" name="alpha_slow_homing_rate_mm_s" type="???" unit="???" title="Alpha slow homing rate mm s">
+        <div class="description">
+            <p>Speed, in millimetres/second, at which to re-home for the alpha actuator ( X axis or alpha tower ) once the endstop is hit once.</p>
+        </div>
+    </div>
+
+    <div class="option" name="beta_slow_homing_rate_mm_s" type="???" unit="???" title="Beta slow homing rate mm s">
+        <div class="description">
+            <p>Speed, in millimetres/second, at which to re-home for the beta actuator ( Y axis or beta tower ) once the endstop is hit once.</p>
+        </div>
+    </div>
+
+    <div class="option" name="gamma_slow_homing_rate_mm_s" type="???" unit="???" title="Gamma slow homing rate mm s">
+        <div class="description">
+            <p>Speed, in millimetres/second, at which to re-home for the gamma actuator ( Z axis or gamma tower ) once the endstop is hit once.</p>
+        </div>
+    </div>
+
+    <div class="option" name="endstop_debounce_count" type="???" unit="???" title="Endstop debounce count">
+        <div class="description">
+            <p>Debounce each endstop pin over this number of values</p>
+            <p>Set to 100 if your endstops are too noisy and give false readings.</p>
+        </div>
+    </div>
+
+    <div class="option" name="alpha_trim" type="???" unit="???" title="Alpha trim">
+        <div class="description">
+            <p>DELTA ONLY Software trim for alpha ( X axis or alpha tower ) stepper endstop (in millimetres )</p>
+            <p>When the endstop is hit, the axis will move this distance towards the endstop (negative values move endstop away from the endstop )</p>
+        </div>
+    </div>
+
+    <div class="option" name="beta_trim" type="???" unit="???" title="Beta trim">
+        <div class="description">
+            <p>DELTA ONLY Software trim for beta ( Y axis or beta tower ) stepper endstop (in millimetres )</p>
+            <p>When the endstop is hit, the axis will move this distance towards the endstop (negative values move endstop away from the endstop )</p>
+        </div>
+    </div>
+
+    <div class="option" name="gamma_trim" type="???" unit="???" title="Gamma trim">
+        <div class="description">
+            <p>DELTA ONLY Software trim for gamma ( Z axis or gamma tower ) stepper endstop (in millimetres )</p>
+            <p>When the endstop is hit, the axis will move this distance towards the endstop (negative values move endstop away from the endstop )</p>
+        </div>
+    </div>
+
+    <div class="option" name="move_to_origin_after_home" type="???" unit="???" title="Move to origin after home">
+        <div class="description">
+            <p>If set to true, once homing is complete, the machine will move to it's origin point</p>
+        </div>
+    </div>
+
+    <!-- Z probe -->
+
+    <div class="option" name="zprobe.enable" type="???" unit="???" title="Enable">
+        <div class="description">
+            <p>Set to true to enable the Z-probe module</p>
+            <p>This is used to scan surfaces, and to calibrate parameters and compensate for non-planar surfaces.</p>
+        </div>
+    </div>
+
+    <div class="option" name="zprobe.probe_pin" type="???" unit="???" title="Probe pin">
+        <div class="description">
+            <p>Pin the probe is connected to.</p>
+        </div>
+    </div>
+
+    <div class="option" name="zprobe.slow_feedrate" type="???" unit="???" title="Slow feedrate">
+        <div class="description">
+            <p>Speed in millimetres/second at which the probe seeks a surface.</p>
+        </div>
+    </div>
+
+    <div class="option" name="zprobe.fast_feedrate" type="???" unit="???" title="Fast feedrate">
+        <div class="description">
+            <p>Speed in millimetres/second at which the probe does fast moves.</p>
+        </div>
+    </div>
+
+    <div class="option" name="zprobe.return_feedrate" type="???" unit="???" title="Return feedrate">
+        <div class="description">
+            <p>Speed in millimetres/second at which the probe does the return after a probe.</p>
+        </div>
+    </div>
+
+    <div class="option" name="zprobe.debounce_count" type="???" unit="???" title="Debounce count">
+        <div class="description">
+            <p>Debounce the probe pin over this number of values</p>
+            <p>Set to 100 if your probe is too noisy and give false readings.</p>
+        </div>
+    </div>
+
+    <div class="option" name="zprobe.probe_height" type="???" unit="???" title="Probe height">
+        <div class="description">
+            <p>Distance above the bed at which the probing is started, once the bed's height is known.</p>
+        </div>
+    </div>
+
+    <!-- Leveling strategy -->
+
+    <div class="option" name="leveling-strategy.three-point-leveling.enable" type="???" unit="???" title="Enable">
+        <div class="description">
+            <p>Set to true to enable the leveling strategy that probes three points to define a plane and then keeps the Z parallel to that plane</p>
+            <p>This is useful if your Z plate/bed is not perfectly aligned with your XY gantry</p>
+        </div>
+    </div>
+
+    <div class="option" name="leveling-strategy.three-point-leveling.point1" type="???" unit="???" title="Point1">
+        <div class="description">
+            <p>The first probe point (X, Y)</p>
+        </div>
+    </div>
+
+    <div class="option" name="leveling-strategy.three-point-leveling.point2" type="???" unit="???" title="Point2">
+        <div class="description">
+            <p>The second probe point (X, Y)</p>
+        </div>
+    </div>
+
+    <div class="option" name="leveling-strategy.three-point-leveling.point3" type="???" unit="???" title="Point3">
+        <div class="description">
+            <p>The third probe point (X, Y)</p>
+        </div>
+    </div>
+
+    <div class="option" name="leveling-strategy.three-point-leveling.home_first" type="???" unit="???" title="Home first">
+        <div class="description">
+            <p>Home the X and Y axes before probing</p>
+        </div>
+    </div>
+
+    <div class="option" name="leveling-strategy.three-point-leveling.tolerance" type="???" unit="???" title="Tolerance">
+        <div class="description">
+            <p>The probe tolerance in millimetres, anything less that this will be ignored, default is 0.03mm</p>
+        </div>
+    </div>
+
+    <div class="option" name="leveling-strategy.three-point-leveling.probe_offsets" type="???" unit="???" title="Probe offsets">
+        <div class="description">
+            <p>The probe offset from nozzle, must be X,Y,Z, default is no offset</p>
+            <p>This is used if your nozzle is not exactly at the same position as where your tool would be.</p>
+        </div>
+    </div>
+
+    <div class="option" name="leveling-strategy.three-point-leveling.save_plane" type="???" unit="???" title="Save plane">
+        <div class="description">
+            <p>Set to true to allow the bed plane to be saved with M500, default is false</p>
+        </div>
+    </div>
+
+    <div class="option" name="leveling-strategy.delta-calibration.enable" type="???" unit="???" title="Enable">
+        <div class="description">
+            <p>Set to true to enable the delta calibration levelling strategy</p>
+            <p>This uses the probe to figure out the plane's tilt and arm's radius in a delta machine</p>
+        </div>
+    </div>
+
+    <div class="option" name="leveling-strategy.delta-calibration.radius" type="???" unit="???" title="Radius">
+        <div class="description">
+            <p>Radius at which to probe the three points</p>
+        </div>
+    </div>
+
+    <div class="option" name="leveling-strategy.delta-calibration.initial_height" type="???" unit="???" title="Initial height">
+        <div class="description">
+            <p>the initial height above the bed we stop the initial move down after home to find the bed</p>
+            <p>This should be a height that is enough that the probe will not hit the bed and is an offset from gamma_max (can be set to 0 if gamma_max takes into account the probe offset)</p>
+        </div>
+    </div>
+
+    <!-- Panel -->
+
+    <div class="option" name="panel.enable" type="???" unit="???" title="Enable">
+        <div class="description">
+            <p>Set to true to enable the panel interface</p>
+            <p>Panels are a screen, an encoder wheel and/or a set of buttons, used to control your machine.</p>
+        </div>
+    </div>
+
+    <div class="option" name="panel.lcd" type="???" unit="???" title="Lcd">
+        <div class="description">
+            <p>Type of panel we are connecting</p>
+            <p>Each panel has a specific interface so we need to specify which panel we will be connecting</p>
+            <p>The currently supported panel types are reprap_discount_glcd, st7565_glcd, viki2, mini_viki2 and universal_adapter.</p>
+        </div>
+    </div>
+
+    <div class="option" name="panel.spi_channel" type="???" unit="???" title="Spi channel">
+        <div class="description">
+            <p>SPI channel to use</p>
+        </div>
+    </div>
+
+    <div class="option" name="panel.spi_cs_pin" type="???" unit="???" title="Spi cs pin">
+        <div class="description">
+            <p>CS ( Chip Select ) pin to use, this can be used to have several different devices on the same SPI port, as long as each device has a separate CS pin</p>
+            <p>Note that the RRD GLCD panel does not support this and requires being alone on it's port.</p>
+        </div>
+    </div>
+
+    <div class="option" name="panel.spi_frequency" type="???" unit="???" title="Spi frequency">
+        <div class="description">
+            <p>SPI port frequency</p>
+        </div>
+    </div>
+
+    <div class="option" name="panel.contrast" type="???" unit="???" title="Contrast">
+        <div class="description">
+            <p>Contrast value for panels that support it ( viki2, mini_viki2 and st7565_glcd )</p>
+        </div>
+    </div>
+
+    <div class="option" name="panel.reverse" type="???" unit="???" title="Reverse">
+        <div class="description">
+            <p>If set to true, reverse the screen.</p>
+        </div>
+    </div>
+
+    <div class="option" name="panel.busy_pin" type="???" unit="???" title="Busy pin">
+        <div class="description">
+            <p>If using the universal_adapter, this pin can be connected to the adapter to ask it if it is busy or not.</p>
+        </div>
+    </div>
+
+    <div class="option" name="panel.encoder_a_pin" type="???" unit="???" title="Encoder a pin">
+        <div class="description">
+            <p>A pin for the encoder wheel</p>
+            <p>Encoders have two pins : A and B</p>
+            <p>Set to nc if you use no encoder.</p>
+        </div>
+    </div>
+
+    <div class="option" name="panel.encoder_b_pin" type="???" unit="???" title="Encoder b pin">
+        <div class="description">
+            <p>B pin for the encoder wheel</p>
+            <p>Encoders have two pins : A and B</p>
+            <p>Set to nc if you use no encoder.</p>
+        </div>
+    </div>
+
+    <div class="option" name="panel.encoder_resolution" type="???" unit="???" title="Encoder resolution">
+        <div class="description">
+            <p>the number of pulses the encoder emits per detent/click</p>
+        </div>
+    </div>
+
+    <div class="option" name="panel.click_button_pin" type="???" unit="???" title="Click button pin">
+        <div class="description">
+            <p>Pin for the click ( "enter" ) button</p>
+        </div>
+    </div>
+
+    <div class="option" name="panel.buzz_pin" type="???" unit="???" title="Buzz pin">
+        <div class="description">
+            <p>Pin for the buzzer</p>
+        </div>
+    </div>
+
+    <div class="option" name="panel.back_button_pin" type="???" unit="???" title="Back button pin">
+        <div class="description">
+            <p>Pin for the back button</p>
+        </div>
+    </div>
+
+    <div class="option" name="panel.up_button_pin" type="???" unit="???" title="Up button pin">
+        <div class="description">
+            <p>Pin for the up button</p>
+        </div>
+    </div>
+
+    <div class="option" name="panel.down_button_pin" type="???" unit="???" title="Down button pin">
+        <div class="description">
+            <p>Pin for the down button</p>
+        </div>
+    </div>
+
+    <div class="option" name="panel.menu_offset" type="???" unit="???" title="Menu offset">
+        <div class="description">
+            <p>On some panels, this value must be set to 1</p>
+            <p>This is a number of lines to offset the menu lines by on screen.</p>
+        </div>
+    </div>
+
+    <div class="option" name="panel.alpha_jog_feedrate" type="???" unit="???" title="Alpha jog feedrate">
+        <div class="description">
+            <p>X jogging feedrate in millimetres/minute</p>
+            <p>This is used when jogging using the panel screen.</p>
+        </div>
+    </div>
+
+    <div class="option" name="panel.beta_jog_feedrate" type="???" unit="???" title="Beta jog feedrate">
+        <div class="description">
+            <p>Y jogging feedrate in millimetres/minute</p>
+            <p>This is used when jogging using the panel screen.</p>
+        </div>
+    </div>
+
+    <div class="option" name="panel.gamma_jog_feedrate" type="???" unit="???" title="Gamma jog feedrate">
+        <div class="description">
+            <p>Z jogging feedrate in millimetres/minute</p>
+            <p>This is used when jogging using the panel screen.</p>
+        </div>
+    </div>
+
+    <div class="option" name="panel.hotend_temperature" type="???" unit="???" title="Hotend temperature">
+        <div class="description">
+            <p>Temperature to set the hotend to when using the pre-heating menu item</p>
+        </div>
+    </div>
+
+    <div class="option" name="panel.bed_temperature" type="???" unit="???" title="Bed temperature">
+        <div class="description">
+            <p>Temperature to set the bed to when using the pre-heating menu item</p>
+        </div>
+    </div>
+
+    <div class="option" name="panel.external_sd" type="???" unit="???" title="External sd">
+        <div class="description">
+            <p>Set to true if your panel has an external SD card slot, or if you want to connect a second SD card slot to one of your Smothieboard's SPI ports</p>
+        </div>
+    </div>
+
+    <div class="option" name="panel.external_sd.spi_channel" type="???" unit="???" title="Spi channel">
+        <div class="description">
+            <p>Set the SPI channel the external SD card is on</p>
+        </div>
+    </div>
+
+    <div class="option" name="panel.external_sd.spi_cs_pin" type="???" unit="???" title="Spi cs pin">
+        <div class="description">
+            <p>Set the CS ( Chip Select ) pin for the external SD card, this allows you to use multiple devices on the same SPI port, as long as they each have a CS pin</p>
+        </div>
+    </div>
+
+    <div class="option" name="panel.external_sd.sdcd_pin" type="???" unit="???" title="Sdcd pin">
+        <div class="description">
+            <p>SD card detect signal pin, set to nc if you don't use a SD card detect signal</p>
+        </div>
+    </div>
+
+    <div class="option" name="custom_menu.menu_name.enable" type="???" unit="???" title="Enable">
+        <div class="description">
+            <p>When set to true, create a new custom menu entry for the panel with the name menu_name</p>
+            <p>You can create any number of custom entries as long as they have different names.</p>
+        </div>
+    </div>
+
+    <div class="option" name="custom_menu.menu_name.name" type="???" unit="???" title="Name">
+        <div class="description">
+            <p>The name that will be displayed in the panel's menus</p>
+        </div>
+    </div>
+
+    <div class="option" name="custom_menu.menu_name.command" type="???" unit="???" title="Command">
+        <div class="description">
+            <p>The command that will be executed when the menu entry is selected and clicked</p>
+            <p>Note that the _ character gets converted to space in the menu and commands ( and must be used instead of the space character ) , and the | character is used to separate multiple commands</p>
+        </div>
+    </div>
+
+    <!-- Network -->
+
+    <div class="option" name="network.enable" type="???" unit="???" title="Enable">
+        <div class="description">
+            <p>If set to true, enable the Ethernet network services</p>
+        </div>
+    </div>
+
+    <div class="option" name="network.webserver.enable" type="???" unit="???" title="Enable">
+        <div class="description">
+            <p>If set to true, enable the web server service, on port 80, which provides a control and upload web interface</p>
+        </div>
+    </div>
+
+    <div class="option" name="network.telnet.enable" type="???" unit="???" title="Enable">
+        <div class="description">
+            <p>If set to true, enable the telnet service, on port 23, which behaves much like a Serial interface</p>
+        </div>
+    </div>
+
+    <div class="option" name="network.plan9.enable" type="???" unit="???" title="Enable">
+        <div class="description">
+            <p>If set to true, enable the plan9 network filesystem on port 564 which allows mounting the Smoothieboard</p>
+        </div>
+    </div>
+
+    <div class="option" name="network.ip_address" type="???" unit="???" title="Ip address">
+        <div class="description">
+            <p>If set to auto, use DHCP to request an IP address</p>
+            <p>If set to an IP address, use that address as a static IP.</p>
+        </div>
+    </div>
+
+    <div class="option" name="network.ip_mask" type="???" unit="???" title="Ip mask">
+        <div class="description">
+            <p>If using a static IP, define the mask for the network.</p>
+        </div>
+    </div>
+
+    <div class="option" name="network.ip_gateway" type="???" unit="???" title="Ip gateway">
+        <div class="description">
+            <p>If using a static IP, define the gateway for the network.</p>
+        </div>
+    </div>
+
+    <div class="option" name="network.mac_override" type="???" unit="???" title="Mac override">
+        <div class="description">
+            <p>If set, override the MAC adress for the Ethernet interface</p>
+            <p>Only set this if you have a conflict on your network.</p>
+        </div>
+    </div>
+
+    <div class="option" name="network.hostname" type="???" unit="???" title="Hostname">
+        <div class="description">
+            <p>Some DHCP servers accept a hostname for the machine, which then allows you to connect to it using that name instead of it's IP.</p>
+        </div>
+    </div>
+
+</div>
 
 
 
@@ -334,6 +2236,2815 @@ var Class=function(){function t(t,n){for(var r in n){if(r==="extend"||r==="stati
 </script>
 
 
+    <!-- Smoothie Happy ( Smoothie API ) submodule -->
+<script type='text/javascript'>
+/**
+* Smoothie-Happy global namespace.
+* @namespace
+*/
+var sh = sh || {};
+
+(function () {
+    'use strict';
+
+    // -------------------------------------------------------------------------
+
+    /**
+    * @readonly
+    * @property {String} name API name.
+    */
+    sh.name = 'smoothie-happy';
+
+    /**
+    * @readonly
+    * @property {String} version API version.
+    */
+    sh.version = '0.0.1-alpha';
+
+    /**
+    * @readonly
+    * @property {String} description API description.
+    */
+    sh.description = 'Smoothieware network communication API.';
+
+    /**
+    * @readonly
+    * @property {String} link API link.
+    */
+    sh.link = 'https://github.com/lautr3k/Smoothie-Happy';
+
+    // -------------------------------------------------------------------------
+
+    /**
+    * Network module.
+    * @namespace
+    */
+    sh.network = {
+        /**
+        * @property {Integer} timeout Default timeout for all request (ms).
+        * @default  5000
+        */
+        timeout: 5000
+    };
+
+    /**
+    * XMLHttpRequest wrapper.
+    * @method sh.network.request
+    * @param  {String}  type              'GET' or 'POST'.
+    * @param  {String}  url               URL with protocol.
+    * @param  {Object}  settings          Request settings.
+    * @param  {Mixed}   settings.data     Data to send with the request.
+    * @param  {Object}  settings.headers  Headers to send with the request.
+    * @param  {Object}  settings.options  {XMLHttpRequest} properties/methods to overwrite.
+    * @return {XMLHttpRequest}
+    */
+    sh.network.request = function(type, url, settings) {
+        // force type to uppercase
+        type = type.toUpperCase();
+
+        // defaults settings
+        settings = settings || {};
+
+        var data     = settings.data    || null;
+        var headers  = settings.headers || {};
+        var options  = settings.options || settings;
+
+        // http request object
+        var xhr = new XMLHttpRequest();
+
+        // open the request
+        xhr.open(type, url, true);
+
+        // set default xhr properties
+        options.timeout = options.timeout || this.timeout;
+
+        // set user xhr properties
+        for (var key in options) {
+            if (key === 'upload') {
+                for (var event in options[key]) {
+                    if (xhr.upload[event] !== undefined) {
+                        xhr.upload[event] = options[key][event];
+                    }
+                }
+            }
+            else if (xhr[key] !== undefined) {
+                xhr[key] = options[key];
+            }
+        }
+
+        // append data to url on GET request
+        if (type === 'GET' && data) {
+            url += data;
+            data = null;
+        }
+
+        // set custom headers
+        for (var key in headers) {
+            xhr.setRequestHeader(key, headers[key]);
+        }
+
+        // send the request
+        xhr.send(type === 'POST' ? data : null);
+
+        // return the request object
+        return xhr;
+    };
+
+    /**
+    * GET request.
+    * @method sh.network.get
+    * @param  {String}  url       URL with protocol.
+    * @param  {Object}  settings  See "{@link sh.network.request}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.network.get = function(url, settings) {
+        return this.request('GET', url, settings);
+    };
+
+    /**
+    * POST request.
+    * @method sh.network.post
+    * @param  {String}  url       URL with protocol.
+    * @param  {Object}  settings  See "{@link sh.network.request}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.network.post = function(url, settings) {
+        return this.request('POST', url, settings);
+    };
+
+    /**
+    * Upload a file on the sd card.
+    * @method sh.network.upload
+    * @param  {String}       ip        Board ip.
+    * @param  {Object|File}  file      {File} object or an {Object} with "name" and "data" properties set.
+    * @param  {Object}       settings  See "{@link sh.network.request}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.network.upload = function(ip, file, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // file is a string, convert to Blob
+        if (typeof file === 'string') {
+            file = new Blob([file], { 'type': 'text/plain' });
+        }
+
+        // file is a File or Blob object, wrap it...
+        if (file instanceof File || file instanceof Blob) {
+            file = {
+                name: file.name,
+                data: file
+            }
+        }
+
+        // set file data
+        settings.data = file.data;
+
+        // set file name header
+        settings.headers = { 'X-Filename': file.name };
+
+        // send the command as post request
+        return this.post('http://' + ip + '/upload', settings);
+    };
+
+    /**
+    * Send a raw command.
+    * @method sh.network.command
+    * @param  {String}                       ip                   Board ip.
+    * @param  {String}                       command              The command string. See {@link http://smoothieware.org/console-commands} for a complete list.
+    * @param  {Object}                       settings             See "{@link sh.network.request}.settings".
+    * @param  {sh.network.responseCallback}  settings.onresponse  Function called when the response is received.
+    * @param  {sh.network.parserCallback}    settings.parser      Function that parses the response.
+    * @return {XMLHttpRequest}
+    */
+    sh.network.command = function(ip, command, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // default callbacks
+        settings.onresponse = settings.onresponse || function() {};
+        settings.parser     = settings.parser     || function(responseText) {
+            return responseText.trim().split('\n');
+        };
+
+        // internal onload callback
+        settings.onload = function(event) {
+            // parse the response
+            var result = settings.parser.call(this, this.responseText);
+
+            // response object
+            var response = { error: null, result: result };
+
+            // result type check
+            if (typeof result !== 'object') {
+                if (typeof result === 'string') {
+                    // error message provided
+                    response.error  = result.trim();
+                    response.result = null;
+                }
+                else if (result !== true) {
+                    // unknown error message
+                    response.error = 'Unknown error';
+                    response.result = null;
+                }
+            }
+
+            // call user callbacks
+            settings.onresponse.call(this, response);
+        };
+
+        // set the command as request data
+        settings.data = command.trim() + '\n';
+
+        // send the command as post request
+        return this.post('http://' + ip + '/command', settings);
+    };
+
+    /**
+    * Callback called by {@link sh.network.command} that parses the raw response.
+    * @callback sh.network.parserCallback
+    * @param    {String} responseText The raw response text provided by the {XMLHttpRequest}
+    * @return   {Mixed}  The response parsed as an object or TRUE if no data. FALSE if an error occure.
+    */
+
+    /**
+    * Callback called by {@link sh.network.command} when the response is parsed.
+    * @callback sh.network.responseCallback
+    * @param    {Object} response Arbitrary object that represents the response.
+    */
+
+    /**
+    * Wait until the board is online.
+    * @method sh.network.waitUntilOnline
+    * @param  {String}                     ip                 Board ip.
+    * @param  {Object}                     settings           See "{@link sh.network.command}.settings".
+    * @param  {Integer}                    settings.limit     Maximum number of trials {@default 10}.
+    * @param  {Integer}                    settings.interval  Interval between trials in milliseconds {@default 2000}.
+    * @param  {sh.network.onlineCallback}  settings.online    Called when the board is online.
+    * @param  {sh.network.ontryCallback}   settings.ontry     Called when we try to connect with the board.
+    * @return {XMLHttpRequest}
+    */
+    sh.network.waitUntilOnline = function(ip, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // request timeout
+        settings.timeout = settings.timeout || 1000;
+
+        // trials limit
+        settings.limit = settings.limit || 10;
+
+        // interval between trials
+        settings.interval = settings.interval || 2000;
+
+        // online callback
+        settings.online = settings.online || null;
+
+        // ontry callback
+        settings.ontry = settings.ontry || null;
+
+        // user callbacks
+        var ontimeout  = settings.ontimeout  || null;
+        var onresponse = settings.onresponse || null;
+
+        // trials counter
+        settings.trials = settings.trials || 1;
+
+        // on connection timeout
+        settings.ontimeout = settings.onerror = function() {
+            // increment trials counter
+            settings.trials++;
+
+            // if limit is reached
+            if (settings.trials > settings.limit) {
+                ontimeout.call(this);
+                return;
+            }
+
+            // delay next try
+            setTimeout(function() {
+                sh.network.waitUntilOnline(ip, settings);
+            }, settings.interval);
+        };
+
+        // on response
+        settings.onresponse = function(response) {
+            // call default user callback
+            if (onresponse) {
+                onresponse.call(this, response);
+                onresponse = null;
+            }
+
+            // if online callback defined and version data
+            if (settings.online && response.result.branch) {
+                settings.online.call(this, response.result);
+                settings.online = null;
+            }
+        };
+
+        // send version command
+        var xhr = sh.command.version(ip, settings);
+
+        // on try callback ?
+        if (settings.ontry) {
+            settings.ontry.call(xhr, settings.trials);
+        }
+
+        // return the request Object
+        return xhr;
+    };
+
+    /**
+    * Callback called by {@link sh.network.waitUntilOnline} when the board is online.
+    * @callback sh.network.onlineCallback
+    * @param    {Object} board Board info (result of version cmd).
+    */
+
+    /**
+    * Callback called by {@link sh.network.waitUntilOnline} when we try to connect with the board.
+    * @callback sh.network.ontryCallback
+    * @param    {Integer} trials Number of trials.
+    */
+
+    // -------------------------------------------------------------------------
+
+    /**
+    * Configuration module.
+    * @namespace
+    */
+    sh.config = {};
+
+    /**
+    * Parse raw configuration.
+    * @method sh.config.parse
+    * @param  {String}  raw  Raw configuration.
+    * @return {Object}  ...
+    */
+    sh.config.parse = function(raw) {
+        // split response text on new lines
+        var lines = raw.trim().split('\n');
+
+        // extract sections
+        var line, section, matches, name, value, disabled, comments;
+        var sections = [], items = {};
+
+        for (var i = 0, il = lines.length; i < il; i++) {
+            // current line
+            line = lines[i];
+
+            // section comments
+            if (line[0] === '#' && line[1] === ' ') {
+                // first line
+                if (! section) {
+                    section = {
+                        comments : [],
+                        items    : {},
+                        maxLength: {
+                            name : 0,
+                            value: 0
+                        }
+                    };
+                }
+
+                // push comment line
+                section.comments.push(line.substr(2).trim());
+                continue;
+            }
+
+            // end of file or section
+            if (i == il - 1 || (lines[i + 1][0] === '#' && lines[i + 1][1] === ' ')) {
+                sections.push(section);
+                section = null;
+                continue;
+            }
+
+            // item comment, append to last item comment
+            if (name && line[0] === ' ') {
+                var item = section.items[name];
+                item.comments.push(line.trim().replace(/^# */, ''));
+                continue;
+            }
+
+            // disabled item (commented)
+            disabled = line[0] === '#';
+
+            if (disabled) {
+                line = line.replace(/^#+ */, '');
+            }
+
+            // extracts [name, value, comment]
+            matches = line.trim().match(/([^ ]+) +([^ ]+) *(.*)?/);
+
+            if (matches) {
+                name     = matches[1];
+                value    = matches[2];
+                comments = matches[3] ? matches[3].substr(1).trim() : '';
+
+                section.items[name] = {
+                    name    : name,
+                    value   : value,
+                    disabled: disabled,
+                    comments: [comments]
+                };
+
+                items[name] = sections.length;
+
+                section.maxLength.name  = Math.max(section.maxLength.name , name.length);
+                section.maxLength.value = Math.max(section.maxLength.value, value.length);
+            }
+
+        }
+
+        // return result
+        return {
+            sections: sections,
+            lines   : lines,
+            items   : items,
+
+            get: function(name) {
+                if (items[name] === undefined
+                || sections[items[name]] === undefined
+                || sections[items[name]].items[name] === undefined) {
+                    return null;
+                }
+
+                return sections[items[name]].items[name];
+            },
+
+            set: function(name, value) {
+                if (! this.get(name)) {
+                    throw new Error('Undefined config item: ' + name);
+                }
+
+                var section = sections[items[name]];
+
+                section.maxLength.value   = 0;
+                section.items[name].value = value + '';
+
+                for (var n in section.items) {
+                    section.maxLength.value = Math.max(
+                        section.maxLength.value, section.items[n].value.length
+                    );
+                }
+
+                return section.items[name].value;
+            }
+        };
+    };
+
+    function wordwrap (str, int_width, str_break, cut) {
+        //  discuss at: http://phpjs.org/functions/wordwrap/
+        // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+        // improved by: Nick Callen
+        // improved by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+        // improved by: Sakimori
+        //  revised by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+        // bugfixed by: Michael Grier
+        // bugfixed by: Feras ALHAEK
+        //   example 1: wordwrap('Kevin van Zonneveld', 6, '|', true);
+        //   returns 1: 'Kevin |van |Zonnev|eld'
+        //   example 2: wordwrap('The quick brown fox jumped over the lazy dog.', 20, '<br />\n');
+        //   returns 2: 'The quick brown fox <br />\njumped over the lazy<br />\n dog.'
+        //   example 3: wordwrap('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.');
+        //   returns 3: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod \ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim \nveniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea \ncommodo consequat.'
+
+        var m = ((arguments.length >= 2) ? arguments[1] : 75)
+        var b = ((arguments.length >= 3) ? arguments[2] : '\n')
+        var c = ((arguments.length >= 4) ? arguments[3] : false)
+
+        var i, j, l, s, r
+
+        str += ''
+
+        if (m < 1) {
+            return str
+        }
+
+        for (i = -1, l = (r = str.split(/\r\n|\n|\r/)).length; ++i < l; r[i] += s) {
+            for (s = r[i], r[i] = ''; s.length > m; r[i] += s.slice(0, j) + ((s = s.slice(j)).length ? b : '')) {
+                j = c == 2 || (j = s.slice(0, m + 1).match(/\S*(\s)?$/))[1] ? m : j.input.length - j[0].length || c == 1 && m || j.input.length + (j = s.slice(m).match(/^\S*/))[0].length
+            }
+        }
+
+        return r.join('\n')
+    }
+
+    /**
+    * Format parsed configuration.
+    * @method sh.config.format
+    * @param  {Object}  config  Configuration object provided by {@link sh.config.parse}.
+    * @return {String}  Formatted configuration file.
+    */
+    sh.config.format = function(config, settings) {
+        // default settings
+        settings = settings || {};
+
+        // maximum line length
+        var maxLineLength = (settings.maxLineLength || 132) - 3;
+
+        // extra paddings
+        var paddings = settings.paddings || {};
+
+        paddings.afterName  = paddings.afterName  || 5;
+        paddings.afterValue = paddings.afterValue || 5;
+
+        // align disabled item
+        var alignDisabledComments = settings.alignDisabledComments || true;
+
+        // add title spacers
+        var titleSpacers = settings.titleSpacers || true;
+
+        if (titleSpacers) {
+            if (typeof titleSpacers !== 'string') {
+                titleSpacers = '-';
+            }
+            titleSpacers = '# ' + Array(maxLineLength + 1).join(titleSpacers) + '\n';
+        }
+
+        // for each section
+        var i, il, j, jl, section, comment, maxLength, name, line, item, pads, buffer = '';
+
+        for (i = 0, il = config.sections.length; i < il; i++) {
+            // current section
+            section = config.sections[i];
+
+            // maximum item name length
+            maxLength = section.maxLength;
+
+            // title spacers
+            if (titleSpacers) {
+                // append title spacers
+                buffer += titleSpacers;
+            }
+
+            // for each comments line
+            for (j = 0, jl = section.comments.length; j < jl; j++) {
+                // word wrap comment
+                comment = section.comments[j];
+                comment = wordwrap(comment, maxLineLength, '\n# ', true);
+
+                // append comment line to buffer
+                buffer += '# ' + comment + '\n';
+            }
+
+            // title spacers
+            if (titleSpacers) {
+                // append title spacers
+                buffer += titleSpacers;
+            }
+
+            // for each item
+            for (name in section.items) {
+                // current item line
+                line = '';
+
+                // current item
+                item = section.items[name];
+
+                // disabled item
+                if (item.disabled) {
+                    // append comment char to buffer
+                    line += '#';
+                }
+
+                // append item name to buffer
+                line += item.name;
+
+                // [name <--> value] padding
+                pads  = maxLength.name - item.name.length + paddings.afterName;
+                pads += maxLength.value - item.value.length + 1;
+
+                if (item.disabled && alignDisabledComments) {
+                    pads--;
+                }
+
+                // append padding spaces
+                line += Array(pads).join(' ');
+
+                // append item value to buffer
+                line += item.value;
+
+                // value paddings
+                pads = paddings.afterValue + 1;
+
+                // append padding spaces
+                line += Array(pads).join(' ');
+
+                // comment
+                comment = item.comments.join(' ');
+
+                // wordwrap
+                pads    = maxLength.name + paddings.afterName;
+                pads   += maxLength.value + paddings.afterValue + 1;
+                comment = wordwrap(comment, maxLineLength - pads, '\n' + Array(pads).join(' ') + '# ', true);
+
+                // append item comment to buffer
+                line += '# ' + comment + '\n';
+
+                // end of item
+                buffer += line;
+            }
+
+            // end of section
+            buffer += '\n';
+        }
+
+        return buffer;
+    };
+
+    /**
+    * Upgrade the configuration file.
+    * @method sh.config.upgrade
+    * @param  {String}  ip        Board ip.
+    * @param  {Object}  settings  See "{@link sh.network.request}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.config.upgrade = function(ip, settings) {
+        // defauls settings
+        settings = settings || {};
+
+        // local and remote file path
+        var localFilename  = settings.filename       || '/sd/config.txt';
+        var remoteFilename = settings.remoteFilename || 'config';
+        var remoteBaseUrl  = settings.remoteUrl      || sh.firmware.git.url.raw + 'edge/ConfigSamples/Smoothieboard/';
+
+        settings.onresponse = function(response) {
+            console.log(response);
+        };
+
+        // get the configuration from sd card
+        return sh.config.getAll(ip, settings);
+    };
+
+    /**
+    * Get configuration from file.
+    * @method sh.config.getAll
+    * @param  {String}  ip                 Board ip.
+    * @param  {Object}  settings           See "{@link sh.network.command}.settings".
+    * @param  {Mixed}   settings.timeout   Connexion timeout {@default 60000}.
+    * @param  {Mixed}   settings.filename  Configuration filename relative to sd card root directory {@default 'config.txt'}.
+    * @return {XMLHttpRequest}
+    */
+    sh.config.getAll = function(ip, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set default timeout to 60s
+        settings.timeout = settings.timeout || 60000;
+
+        // set default filename
+        var filename = settings.filename || 'config.txt';
+
+        // default response parser callback
+        settings.parser = settings.parser || sh.config.parse;
+
+        // send the command
+        return sh.command.cat(ip, '/sd/' + filename, settings);
+    };
+
+    /**
+    * Get config value.
+    * @method sh.config.get
+    * @param  {String}  ip                 Board ip.
+    * @param  {String}  [name]             Setting name, if not set return all items (take long time).
+    * @param  {Object}  settings           See "{@link sh.network.command}.settings".
+    * @param  {String}  settings.location  Where to read the value {@default 'sd'}.
+    * @return {XMLHttpRequest}
+    */
+    sh.config.get = function(ip, name, settings) {
+        // get all
+        if (arguments.length < 3) {
+            return sh.config.getAll(ip, name); // name = settings
+        }
+
+        // defaults settings
+        settings = settings || {};
+
+        // set config location
+        var location = settings.location || 'sd';
+
+        if (location.length) {
+            location = location + ' ';
+        }
+
+        // set the command
+        var command = 'config-get ' + location + name;
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            raw = raw.trim();
+
+            if (raw.indexOf('is not in config') !== -1) {
+                return raw;
+            }
+
+            if (raw.length) {
+                return { value: raw.split(' ').pop() };
+            }
+
+            return 'invalid location';
+        };
+
+        // send the comand
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Set config value.
+    * @method sh.config.set
+    * @param  {String}  ip                 Board ip.
+    * @param  {String}  name               Setting name.
+    * @param  {String}  value              Setting value.
+    * @param  {Object}  settings           See "{@link sh.network.command}.settings".
+    * @param  {String}  settings.location  Where to write the value {@default 'sd'}.
+    * @return {XMLHttpRequest}
+    */
+    sh.config.set = function(ip, name, value, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set config location
+        var location = settings.location || 'sd';
+
+        if (location.length) {
+            location = location + ' ';
+        }
+
+        // set the command
+        var command = 'config-set ' + location + name + ' ' + value;
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            raw = raw.trim();
+
+            if (raw.indexOf('not enough space to overwrite existing key/value') !== -1) {
+                return raw;
+            }
+
+            if (raw.length) {
+                return { value: raw.split(' ').pop() };
+            }
+
+            return 'invalid location';
+        };
+
+        // send the comand
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Saves a configuration override file as specified filename or as config-override.
+    * @method sh.config.save
+    * @param  {String}  ip          Board ip.
+    * @param  {String}  [filename]  Target config-override filename.
+    * @param  {Object}  settings    See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.config.save = function(ip, filename, settings) {
+        if (arguments.length === 2) {
+            settings = filename;
+            filename = '/';
+        }
+
+        // defaults settings
+        settings = settings || {};
+
+        // set the command
+        var command = 'save ' + filename;
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            return { message: raw.trim() };
+        };
+
+        // send the command
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * loads a configuration override file from specified name or config-override.
+    * @method sh.config.load
+    * @param  {String}  ip          Board ip.
+    * @param  {String}  [filename]  Target config-override filename.
+    * @param  {Object}  settings    See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.config.load = function(ip, filename, settings) {
+        if (arguments.length === 2) {
+            settings = filename;
+            filename = '/';
+        }
+
+        // defaults settings
+        settings = settings || {};
+
+        // set the command
+        var command = 'load ' + filename;
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            raw = raw.trim();
+
+            if (raw.indexOf('File not found') === 0) {
+                return raw;
+            }
+
+            var lines   = raw.split('\n');
+            var message = lines.shift() + ' ' + lines.pop() + '.';
+
+            return { message: message, lines: lines };
+        };
+
+        // send the command
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Load/unload/dump configuration cache.
+    * @method sh.config.cache
+    * @param  {String}  ip        Board ip.
+    * @param  {String}  action    Possible values [load|unload|dump].
+    * @param  {Object}  settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.config.cache = function(ip, action, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        if (action === 'dump') {
+            // set default timeout to 60s
+            settings.timeout = settings.timeout || 60000;
+        }
+
+        // set the command
+        var command = 'config-load ' + action;
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            raw = raw.trim();
+
+            if (raw.indexOf('unsupported option') === 0 || action === 'checksum') {
+                return 'unsupported option: must be one of load|unload|dump';
+            }
+
+            if (action === 'load' || action === 'unload') {
+                return { message: raw };
+            }
+
+            return { lines: raw.split('\n') };
+        };
+
+        // send the comand
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Load configuration cache.
+    * @method sh.config.cacheLoad
+    * @param  {String}  ip        Board ip.
+    * @param  {Object}  settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.config.cacheLoad = function(ip, settings) {
+        return sh.config.cache(ip, 'load', settings);
+    };
+
+    /**
+    * Unload configuration cache.
+    * @method sh.config.cacheUnload
+    * @param  {String}  ip        Board ip.
+    * @param  {Object}  settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.config.cacheUnload = function(ip, settings) {
+        return sh.config.cache(ip, 'unload', settings);
+    };
+
+    /**
+    * Dump configuration cache.
+    * @method sh.config.cacheDump
+    * @param  {String}  ip        Board ip.
+    * @param  {Object}  settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.config.cacheDump = function(ip, settings) {
+        return sh.config.cache(ip, 'dump', settings);
+    };
+
+    // -------------------------------------------------------------------------
+
+    /**
+    * Firmware module.
+    * @namespace
+    */
+    sh.firmware = {
+        /**
+        * @property {Object} edge         Edge related commits information.
+        * @property {Object} edge.update  Collection update time.
+        * @property {Object} edge.commits Collection of commits 'hash:position'.
+        */
+        edge: {
+            update : 0,
+            commits: {}
+        },
+        git: {
+            url: {
+                api: 'https://api.github.com/repos/Smoothieware/Smoothieware/',
+                raw: 'https://raw.githubusercontent.com/Smoothieware/Smoothieware/'
+            }
+        }
+    };
+
+    /**
+    * Get last (30) commits from the git.
+    * @method sh.firmware.getCommits
+    * @param  {Object}                       settings             See "{@link sh.network.request}.settings".
+    * @param  {sh.network.responseCallback}  settings.onresponse  Function called when the response is received.
+    * @return {XMLHttpRequest}
+    */
+    sh.firmware.getCommits = function(settings) {
+        // firmware repo url
+        var url  = sh.firmware.git.url.api + 'commits';
+        var data = '?sha=edge&path=FirmwareBin/firmware.bin';
+
+        // commits collection
+        var commits = {};
+
+        // default settings
+        settings = settings || {};
+
+        // set request data
+        settings.data = data;
+
+        // on response callback
+        settings.onresponse = settings.onresponse || function() {};
+
+        // response object
+        var response = { error: 'Empty response', result: null };
+
+        // onload callback
+        settings.onload = settings.onload || function() {
+            // get the response text (JSON)
+            var json = this.responseText;
+
+            // empty response
+            if (!json.length) {
+                return response;
+            }
+
+            // parse JSON
+            var items = JSON.parse(json);
+
+            // empty response
+            if (!items.length) {
+                return response;
+            }
+
+            // extract commits hash and position
+            for (var commits = {}, i = 0, il = items.length; i < il; i++) {
+                commits[items[i].parents[0].sha.substr(0, 7)] = i;
+            }
+
+            // response
+            response.error  = null;
+            response.result = commits;
+
+            // save as global
+            sh.firmware.edge.commits = commits;
+            sh.firmware.edge.update  = Date.now();
+
+            // call user callbacks
+            settings.onresponse.call(this, response);
+        };
+
+        // send the request
+        return sh.network.get(url, settings);
+    };
+
+    /**
+    * Get version position.
+    * @method sh.firmware.getCommitPosition
+    * @param  {String}   hash  Commit hash to get position.
+    * @return {Integer}  Return -1 if not found or the position if found, `[0 = firmware is up to date]`.
+    */
+    sh.firmware.getCommitPosition = function(hash) {
+        if (this.edge.commits[hash] === undefined) {
+            return -1;
+        }
+        return parseInt(this.edge.commits[hash]);
+    };
+
+    /**
+    * Get last (edge) firmware as {Blob}.
+    * @method sh.firmware.getFirmware
+    * @param  {Object}                       settings             See "{@link sh.network.request}.settings".
+    * @param  {sh.network.responseCallback}  settings.onresponse  Function called when the response is received.
+    * @return {XMLHttpRequest}
+    */
+    sh.firmware.getFirmware = function(settings) {
+        var url = sh.firmware.git.url.raw + 'edge/FirmwareBin/firmware.bin';
+
+        // default settings
+        settings = settings || {};
+
+        // set response type
+        settings.responseType = 'blob';
+
+        // set request data
+        settings.timeout = settings.timeout || (1000 * 15);
+
+        // on response callback
+        settings.onresponse = settings.onresponse || function() {};
+
+        // response object
+        var response = { error: 'Empty response', result: null };
+
+        // onload callback
+        settings.onload = settings.onload || function() {
+            var blob = this.response || null;
+
+            if (!blob instanceof Blob) {
+                return response;
+            }
+
+            response.error  = null;
+            response.result = { name: 'firmware.bin', data: blob };
+
+            settings.onresponse.call(this, response);
+        };
+
+        return sh.network.get(url, settings);
+    };
+
+    /**
+    * Update the firmware.
+    * @method sh.firmware.update
+    * @param  {String}  ip        Board ip.
+    * @param  {Object}  settings  See "{@link sh.network.request}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.firmware.update = function(ip, settings) {
+        // defauls settings
+        settings = settings || {};
+
+        // first action name
+        var action = 'download';
+
+        // old user defined timeout
+        var timeout = settings.timeout || 2000;
+
+        // user callback
+        var onresponse = settings.onresponse || function() {};
+
+        // on response
+        settings.onresponse = function(response) {
+            // set action name
+            response.action = action;
+
+            // call user callback
+            onresponse.call(this, response);
+
+            // call next action
+            if (action === 'download') {
+                // next action name
+                action = 'upload';
+
+                // file to upload
+                var file = response.result;
+
+                // set bigger timeout for upload
+                settings.timeout = 60000;
+
+                // upload the firmware
+                sh.command.upload(ip, file, settings);
+            }
+            else if (action === 'upload') {
+                // next action name
+                action = 'reset';
+
+                // reset default timeout
+                settings.timeout = timeout;
+
+                // reset responseType (set to 'blob' by upload command)
+                settings.responseType = 'text';
+
+                // reset the board
+                sh.command.reset(ip, settings);
+            }
+        };
+
+        // download last firmware
+        return sh.firmware.getFirmware(settings);
+    };
+
+    // -------------------------------------------------------------------------
+
+    /**
+    * Scanner module.
+    * @namespace
+    */
+    sh.scanner = {
+        /**
+        * @property  {String}  input  Input to scan.
+        * @default   192.168.1.*.
+        */
+        input: '192.168.1.*',
+
+        /**
+        * @property  {Integer}  timeout  Default response timeout in milliseconds.
+        * @default 1000
+        */
+        timeout: 1000,
+
+        /**
+        * @readonly
+        * @property {Boolean} scanning Is scanning.
+        */
+        scanning: false,
+
+        /**
+        * @readonly
+        * @property {Integer} scanned Number of ip scanned.
+        */
+        scanned: 0,
+
+        /**
+        * @readonly
+        * @property {String} total Total number of ip to scan.
+        */
+        total: 0,
+
+        /**
+        * @readonly
+        * @property {Integer} found Number of borads found.
+        */
+        found: 0,
+
+        /**
+        * @readonl
+        * @property {Array} queue Ip's queue to scann.
+        */
+        queue: [],
+
+        /**
+        * @readonly
+        * @property {Object} boards Known boards list.
+        */
+        boards: {},
+
+        /**
+        * @readonly
+        * @property {Boolean} aborted Aborted scann status.
+        */
+        aborted: false
+    };
+
+    /**
+    * Called when scan start.
+    * @method sh.scanner.onstart
+    * @param  {Array}  queue Ip's queue to scann.
+    */
+    sh.scanner.onstart = function(queue) {};
+
+    /**
+    * Called when board found.
+    * @method sh.scanner.onboard
+    * @param  {Object}  board Board version.
+    */
+    sh.scanner.onboard = function(board) {};
+
+    /**
+    * Called when scan progress.
+    * @method sh.scanner.onprogress
+    * @param  {String}  ip     Current ip.
+    * @param  {Mixed}   board  Board version if found or null.
+    */
+    sh.scanner.onprogress = function(ip, board) {};
+
+    /**
+    * Called when abort scan.
+    * @method sh.scanner.onabort
+    */
+    sh.scanner.onabort = function() {};
+
+    /**
+    * Called when resume scan.
+    * @method sh.scanner.onresume
+    */
+    sh.scanner.onresume = function() {};
+
+    /**
+    * Called when scan stop.
+    * @method sh.scanner.onstop
+    */
+    sh.scanner.onstop = function() {};
+
+    /**
+    * Called when scan end.
+    * @method sh.scanner.onend
+    * @param  {Integer}  found Number of boards found.
+    */
+    sh.scanner.onend = function(found) {};
+
+    /**
+    * Set scan timeout.
+    * @method sh.scanner.setTimeout
+    * @param  {Integer}     timeout  Scan timeout in milliseconds [min: 100, max: 2000].
+    * @return {sh.scanner}  this     Chainable
+    */
+    sh.scanner.setTimeout = function(timeout) {
+        // out of range test
+        if (timeout < 100 || timeout > 2000) {
+            throw new Error('Timeout is out of range [100, 2000].');
+        }
+
+        // set the timeout
+        this.timeout = timeout;
+
+        // return self
+        return this;
+    };
+
+    /**
+    * Set the input and compute the scan queue.
+    *
+    * **Allowed inputs :**
+    * ```
+    * - Wildcard  : '192.168.1.*'
+    * - Single IP : '192.168.1.100'
+    * - IP Range  : '192.168.1.100-120'
+    * - Hostname  : 'my.smoothie.board'
+    * - Mixed     : '192.168.1.100, my.smoothie.board'
+    * - Array     : ['192.168.1.100-120', 'my.smoothie.board']
+    * ```
+    *
+    * @method sh.scanner.setInput
+    * @param  {String|Array}  input  Ip's scan pattern.
+    * @return {sh.scanner}    this   Chainable
+    */
+    sh.scanner.setInput = function(input) {
+        // reset queue
+        this.queue = [];
+
+        // input array
+        var inputArray = input;
+
+        // split input on comma if not an array
+        if (typeof inputArray === 'string') {
+            inputArray = inputArray.split(',');
+        }
+
+        // too short or not defined
+        if (inputArray.length === 0) {
+            throw new Error('Invalid input.');
+        }
+
+        // trim input parts
+        inputArray = inputArray.map(function(part) {
+            return part.trim();
+        });
+
+        // for each parts
+        for (var y = 0, yl = inputArray.length; y < yl; y++) {
+            // current part
+            var currentInput = inputArray[y];
+
+            // Wildcard | ex.: [192.168.1.*]
+            if (/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.\*$/.test(currentInput)) {
+                var currentInputParts = currentInput.split('.');
+                currentInputParts.pop(); // remove last part (*)
+                var baseIp = currentInputParts.join('.');
+                for (var i = 0; i <= 255; i++) {
+                    this.queue.push(baseIp + '.' + i);
+                }
+            }
+
+            // Single ip | ex.: [192.168.1.55]
+            else if (/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/.test(currentInput)) {
+                this.queue.push(currentInput);
+            }
+
+            // Ip's range | ex.: [192.168.1.50-100]
+            else if (/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\-[0-9]{1,3}$/.test(currentInput)) {
+                var currentInputParts = currentInput.split('.');
+                var currentInputRange = currentInputParts.pop().split('-'); // last part (xxx-xxx)
+                var baseIp     = currentInputParts.join('.');
+                for (var i = currentInputRange[0], il = currentInputRange[1]; i <= il; i++) {
+                    this.queue.push(baseIp + '.' + i);
+                }
+            }
+
+            // Hostname | ex.: [www.host.name]
+            else if (/^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$/.test(currentInput)) {
+                this.queue.push(currentInput);
+            }
+
+            // Invalid...
+            else {
+                throw new Error('Invalid input.');
+            }
+        }
+
+        // set input
+        this.input = input;
+
+        // return self
+        return this;
+    };
+
+    /**
+    * Shift and scan an ip from the queue looking for a SmoothieBoard.
+    * @method sh.scanner.processQueue
+    * @protected
+    */
+    sh.scanner.processQueue = function() {
+        // not in scan mode
+        if (!this.scanning) {
+            return false;
+        }
+
+        // shift first ip from the queue
+        var ip = this.queue.shift();
+
+        // end of queue
+        if (! ip) {
+            this.onend(this.found);
+            this.scanning = false;
+            return true;
+        }
+
+        // self alias
+        var self  = this;
+
+        // board object
+        var board = null;
+
+        // try to get the board version
+        sh.command.version(ip, {
+            // set default timeout
+            timeout : self.timeout,
+
+            // on response
+            onresponse: function(response) {
+                // board version info
+                board = response.result;
+
+                // increment found counter
+                self.found++;
+
+                // add/update the board
+                self.boards[ip] = board;
+
+                // notify board found
+                self.onboard(board);
+            },
+
+            // in any case
+            onloadend: function() {
+                // increment scanned counter
+                self.scanned++;
+
+                // notify progression
+                self.onprogress(ip, board);
+
+                // scan next ip
+                self.processQueue();
+            }
+        });
+    };
+
+    /**
+    * Scan the network looking for some Smoothie boards.
+    *
+    * **Allowed inputs :**
+    * ```
+    * - Wildcard  : '192.168.1.*'
+    * - Single IP : '192.168.1.100'
+    * - IP Range  : '192.168.1.100-120'
+    * - Hostname  : 'my.smoothie.board'
+    * - Mixed     : '192.168.1.100, my.smoothie.board'
+    * - Array     : ['192.168.1.100-120', 'my.smoothie.board']
+    * ```
+    *
+    * @method sh.scanner.scan
+    * @param  {String|Array}           input               Ip's scan pattern.
+    * @param  {Object}                 settings            Scan settings.
+    * @param  {Integer}                settings.timeout    Scan timeout for each ip.
+    * @param  {sh.scanner.onstart}     settings.onstart    ...
+    * @param  {sh.scanner.onboard}     settings.onboard    ...
+    * @param  {sh.scanner.onprogress}  settings.onprogress ...
+    * @param  {sh.scanner.onabort}     settings.onabort    ...
+    * @param  {sh.scanner.onresume}    settings.onresume   ...
+    * @param  {sh.scanner.onstop}      settings.onstop     ...
+    * @param  {sh.scanner.onend}       settings.onend      ...
+    * @return {sh.scanner}             this                Chainable
+    */
+    sh.scanner.scan = function(input, settings) {
+        if (this.scanning) {
+            throw new Error('Already in scan mode.');
+        }
+
+        // default settings
+        settings = settings || {};
+
+        // default timeout
+        var timeout = settings.timeout || null;
+
+        // set input and timeout
+        input   && this.setInput(input);
+        timeout && this.setTimeout(timeout);
+
+        // reset scann properties
+        this.scanning = true;
+        this.aborted  = false;
+        this.total    = this.queue.length;
+        this.scanned  = 0;
+        this.found    = 0;
+        this.boards   = {};
+
+        // set user callbacks
+        for (var callback in settings) {
+            if (callback.indexOf('on') === 0 && this[callback]) {
+                this[callback] = settings[callback];
+            }
+        }
+
+        // call onstart callback
+        this.onstart(this.queue);
+
+        // process queue
+        this.processQueue();
+
+        // return self
+        return this;
+    };
+
+    /**
+    * Stop current scan.
+    * @method sh.scanner.stop
+    * @param  {Boolean}  [silent]  If true the [onstop] callback was not trigered {@default false}.
+    * @return {Boolean}  status    Return [true] if stopped, [false] if already stopped.
+    */
+    sh.scanner.stop = function(silent) {
+        if (this.scanning || this.aborted) {
+            !silent && this.onstop(this);
+            this.scanning = false;
+            this.aborted  = false;
+            return true;
+        }
+        return false;
+    };
+
+    /**
+    * Abort current scan.
+    * @method sh.scanner.abort
+    * @return {Boolean}  status  Return [true] if aborted, [false] if already aborted.
+    */
+    sh.scanner.abort = function() {
+        if (this.stop(true)) {
+            this.aborted = true;
+            this.onabort(this);
+            return true;
+        }
+        return false;
+    };
+
+    /**
+    * Resume aborted scan.
+    * @method sh.scanner.resume
+    * @param  {Integer}  [timeout]  Optionally resume with a new timeout.
+    * @return {Boolean}  status     Return [true] if resumed, [false] if not resumable.
+    */
+    sh.scanner.resume = function(timeout) {
+        if (this.aborted) {
+            timeout && this.setTimeout(timeout);
+            this.aborted  = false;
+            this.scanning = true;
+            this.onresume(this);
+            this.processQueue();
+            return true;
+        }
+        return false;
+    };
+
+    // -------------------------------------------------------------------------
+
+    /**
+    * Command module.
+    * @namespace
+    * @see http://smoothieware.org/console-commands
+    */
+    sh.command = {};
+
+    /**
+    * List the files in the folder passed as a parameter.
+    * @method sh.command.ls
+    * @param  {String}    ip               Board ip.
+    * @param  {String}    path             Path to list, can be absolute or relative.
+    * @param  {Object}    settings         See "{@link sh.network.command}.settings".
+    * @param  {Callback}  settings.filter  Function to filter the files list.
+    * @return {XMLHttpRequest}
+    */
+    sh.command.ls = function(ip, path, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set the command
+        var command = 'ls -s ' + path;
+
+        // hack to by sure to get the right file size when filename contains spaces
+        command += '\nok\nls ' + path;
+
+        // default filename filter callback
+        settings.filter = settings.filter  || null;
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            // error
+            if (raw.indexOf('Could not open directory') === 0) {
+                return raw;
+            }
+
+            // split the two ls response
+            var results = raw.split('\nok\n');
+            var sizes   = results[0].split('\n');
+            var names   = results[1].split('\n');
+
+            var i, il, name, type, size, files = [];
+
+            for (i = 0, il = sizes.length; i < il; i++) {
+                name = names[i].trim();
+                type = names[i] === sizes[i] ? 'folder' : 'file';
+                size = sizes[i];
+                size = parseFloat(size.replace(name, '').trim());
+
+                files.push({ path: path, name: name, type: type, size: size });
+            }
+
+            // filter files
+            if (settings.filter) {
+                files = files.filter(settings.filter);
+            }
+
+            // return files
+            return files;
+        };
+
+        // send the command
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Change the current folder to the folder passed as a parameter.
+    * @method sh.command.cd
+    * @param  {String}  ip        Board ip.
+    * @param  {String}  path      Path to folder, can be absolute or relative.
+    * @param  {Object}  settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.cd = function(ip, path, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set the command
+        var command = 'cd ' + path;
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            // error
+            var message = raw.trim();
+
+            if (message.length) {
+                return message;
+            }
+
+            return { message: message };
+        };
+
+        // send the comand
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Shows the current folder.
+    * @method sh.command.pwd
+    * @param  {String}  ip        Board ip.
+    * @param  {Object}  settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.pwd = function(ip, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set the command
+        var command = 'pwd';
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            return { directory: raw.trim() };
+        };
+
+        // send the comand
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Get the content of the file given as a parameter.
+    * @method sh.command.cat
+    * @param  {String}   ip              Board ip.
+    * @param  {String}   path            Path to file, can be absolute or relative.
+    * @param  {Object}   settings        See "{@link sh.network.command}.settings".
+    * @param  {Integer}  settings.limit  Limit the returned number of lines.
+    * @return {XMLHttpRequest}
+    */
+    sh.command.cat = function(ip, path, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set limit if requested
+        var limit = settings.limit ? (' ' + settings.limit) : '';
+
+        // set the command
+        var command = 'cat ' + path + limit;
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            // error
+            if (raw.indexOf('File not found') === 0) {
+                return raw;
+            }
+
+            return raw.split('\n');
+        };
+
+        // send the comand
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Remove a file.
+    * @method sh.command.rm
+    * @param  {String}  ip        Board ip.
+    * @param  {String}  path      Path to file to remove.
+    * @param  {Object}  settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.rm = function(ip, path, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set the command
+        var command = 'rm ' + path;
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            // error
+            if (raw.indexOf('Could not delete') === 0) {
+                return raw;
+            }
+
+            return { message: 'removed' };
+        };
+
+        // send the comand
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Move a file.
+    * @method sh.command.mv
+    * @param  {String}  ip        Board ip.
+    * @param  {String}  path      Path to file source.
+    * @param  {String}  newpath   Path to file destination.
+    * @param  {Object}  settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.mv = function(ip, path, newpath, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set the command
+        var command = 'mv ' + path + ' ' + newpath;
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            // error
+            if (raw.indexOf('Could not rename') === 0) {
+                return raw;
+            }
+
+            return { message: raw.trim() };
+        };
+
+        // send the comand
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Alias of {@link sh.network.upload}.
+    * Upload a file on the sd card.
+    * @method sh.command.upload
+    * @param  {String}       ip        Board ip.
+    * @param  {Object|File}  file      {File} object or an {Object} with "name" and "data" properties set.
+    * @param  {Object}       settings  See "{@link sh.network.request}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.upload = function(ip, file, settings) {
+        return sh.network.upload(ip, file, settings);
+    };
+
+    /**
+    * Reset the system.
+    * @method sh.command.reset
+    * @param  {String}   ip                        Board ip.
+    * @param  {Object}   settings                  See "{@link sh.network.command}.settings".
+    * @param  {Integer}  settings.resetDelay       Delay before the smoothie reset (@default: 5000).
+    * @param  {Object}   settings.waitUntilOnline  See "{@link sh.network.waitUntilOnline}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.reset = function(ip, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set the command
+        var command = 'reset';
+
+        // delay before the smoothie reset (default: 5 seconds)
+        // https://github.com/Smoothieware/Smoothieware/blob/100e5055156f7fbe9f7b57fccdc4bfd0784bc728/src/modules/utils/simpleshell/SimpleShell.cpp#L620
+        settings.resetDelay = settings.resetDelay || 5000;
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            if (settings.waitUntilOnline) {
+                setTimeout(function() {
+                    sh.network.waitUntilOnline(ip, settings.waitUntilOnline);
+                }, settings.resetDelay + 1000);
+            }
+
+            return { message: raw.trim() };
+        };
+
+        // send the comand
+        return sh.network.command(ip, command, settings);
+    };
+    /**
+    * Get the input value checksum.
+    * @method sh.command.checksum
+    * @param  {String}  ip        Board ip.
+    * @param  {String}  input     Input value to get checksum.
+    * @param  {Object}  settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.checksum = function(ip, input, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set the command
+        var command = 'config-load checksum ' + input;
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            raw = raw.trim();
+
+            var checksum = raw.split('=').pop().trim();
+
+            return { checksum: checksum };
+        };
+
+        // send the comand
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Get a list of commands.
+    * @method sh.command.help
+    * @param  {String}  ip        Board ip.
+    * @param  {Object}  settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.help = function(ip, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set the command
+        var command = 'help';
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            // split response text on new lines
+            var lines = raw.trim().split('\n');
+
+            // remove mst line ('Commands:')
+            lines.shift();
+
+            // return commands list
+            return lines;
+        };
+
+        // send the comand
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Get the board/firmware version.
+    * @method sh.command.version
+    * @param  {String}  ip        Board ip.
+    * @param  {Object}  settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.version = function(ip, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set the command
+        var command = 'version';
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            // version pattern
+            // expected : Build version: edge-94de12c, Build date: Oct 28 2014 13:24:47, MCU: LPC1769, System Clock: 120MHz
+            var pattern = /Build version: (.*), Build date: (.*), MCU: (.*), System Clock: (.*)/;
+
+            // test the pattern
+            var matches = raw.match(pattern);
+
+            if (matches) {
+                // split branch-hash on dash
+                var branch = matches[1].split('-');
+
+                // response object
+                return {
+                    branch: branch[0],
+                    hash  : branch[1],
+                    date  : matches[2],
+                    mcu   : matches[3],
+                    clock : matches[4]
+                };
+            }
+
+            // not found
+            return 'No version found';
+        };
+
+        // send the comand
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Get information about RAM usage.
+    * @method sh.command.mem
+    * @param  {String}  ip        Board ip.
+    * @param  {Object}  settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.mem = function(ip, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set verbosity
+        var verbose = settings.verbose ? ' -v' : '';
+
+        // set the command
+        var command = 'mem' + verbose;
+
+        // send the comand
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Get [temp|pos|wcs|state|status|fk|ik].
+    * @method sh.command.get
+    * @param  {String} ip        Board ip.
+    * @param  {String} what      Possible value [temp|pos|wcs|state|status|fk|ik].
+    * @param  {Mixed}  settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.get = function(ip, what, settings) {
+        return sh.network.command(ip, 'get ' + what, settings || {});
+    };
+
+    /**
+    * Get current temperature.
+    * @method sh.command.tempGet
+    * @param  {String}  ip               Board ip.
+    * @param  {Object}  settings         See "{@link sh.network.command}.settings".
+    * @param  {Mixed}   settings.device  Possible values: [all, bed, hotend] {@default all}.
+    * @return {XMLHttpRequest}
+    */
+    sh.command.tempGet = function(ip, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set default device
+        var device = settings.device || 'all';
+        device = device === 'all' ? '' : ' ' + device;
+
+        // set the command
+        var what = 'temp' + device;
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            raw = raw.trim();
+
+            if (raw.indexOf('no heaters found') === 0) {
+                return raw;
+            }
+            else if (raw.indexOf('is not a known temperature device') !== -1) {
+                return raw;
+            }
+
+            // split response on new lines
+            var lines = raw.split('\n');
+
+            var i, il, line, temp, temps = [];
+
+            for (i = 0, il = lines.length; i < il; i++) {
+                line = lines[i].split(' ');
+
+                // %s (%d) temp: %f/%f @%d
+                // designator, id, current_temperature, target_temperature, pwm
+                if (device === '') {
+                    temp = line[3].split('/');
+                    temps.push({
+                        type      : line[0] === 'B' ? 'bed' : 'hotend',
+                        designator: line[0],
+                        id        : line[1].substr(1, line[1].length-2),
+                        current   : parseFloat(temp[0] === 'inf' ? Infinity : temp[0]),
+                        target    : parseFloat(temp[1]),
+                        pwm       : parseFloat(line[4].substr(1))
+                    });
+                }
+                // %s temp: %f/%f @%d
+                // designator, id, current_temperature, target_temperature, pwm
+                else {
+                    temp  = line[2].split('/');
+                    temps = {
+                        type   : line[0],
+                        current: parseFloat(temp[0] === 'inf' ? Infinity : temp[0]),
+                        target : parseFloat(temp[1]),
+                        pwm    : parseFloat(line[3].substr(1))
+                    };
+                }
+            }
+
+            return temps;
+        };
+
+        // send the comand
+        return sh.command.get(ip, what, settings);
+    };
+
+    /**
+    * Set temperature.
+    * @method sh.command.tempSet
+    * @param  {String}  ip        Board ip.
+    * @param  {String}  device    Device [bed|hotend].
+    * @param  {Integer} temp      Target tempertaure.
+    * @param  {Object}  settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.tempSet = function(ip, device, temp, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set the command
+        var command = 'set_temp ' + device + ' ' + temp;
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            raw = raw.trim();
+
+            if (raw.indexOf('is not a known temperature device') !== -1) {
+                return raw;
+            }
+
+            // return message
+            return { message: raw };
+        };
+
+        // send the comand
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Set/Get temperature.
+    * @method sh.command.temp
+    * @param  {String}  ip        Board ip.
+    * @param  {String}  [device]  Device [bed|hotend].
+    * @param  {Integer} [temp]    Target tempertaure.
+    * @param  {Object}  settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.temp = function(ip, device, temp, settings) {
+        var args   = Array.prototype.slice.call(arguments);
+        var method = args.length > 2 ? 'tempSet' : 'tempGet';
+        return sh.command[method].apply(this, args);
+    };
+
+    /**
+    * Do forward or inverse kinematics on the given cartesian position,
+    * optionally moves the actuators and finaly display the coordinates.
+    * @method sh.command.kinematics
+    * @param  {String}   ip                Board ip.
+    * @param  {Object}   settings          See "{@link sh.network.command}.settings".
+    * @param  {Boolean}  settings.move     Move to the calculated or given XYZ coords {@default false}.
+    * @param  {Boolean}  settings.inverse  Do inverse kinematics {@default false}.
+    * @return {XMLHttpRequest}
+    */
+    sh.command.kinematics = function(ip, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // inverse or forward
+        var type = settings.inverse ? 'ik' : 'fk';
+
+        // move to the calculated or given XYZ coords ?
+        var move = settings.move ? ' -m' : '';
+
+        // positions
+        var position = settings.position || 0;
+
+        // set coords
+        var x, y, z;
+
+        if (typeof position !== 'object') {
+            x = y = z = parseFloat(position);
+        }
+        else {
+            x = position.x || 0;
+            y = position.y || x;
+            z = position.z || y;
+        }
+
+        // set the command
+        var what = type + move + ' ' + x + ',' + y + ',' + z;
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            raw = raw.trim();
+
+            if (raw.indexOf('error:') === 0) {
+                return raw.substr(6);
+            }
+
+            if (type === 'ik') {
+                var pattern = /(.*)= A (.*), B (.*), C (.*)/;
+            }
+            else {
+                var pattern = /(.*)= X (.*), Y (.*), Z (.*), Steps= A (.*), B (.*), C (.*)/;
+            }
+
+            var matches = raw.match(pattern);
+
+            if (matches) {
+                if (type == 'ik') {
+                    return {
+                        type: matches[1],
+                        coords: {
+                            a: parseFloat(matches[2]),
+                            b: parseFloat(matches[3]),
+                            c: parseFloat(matches[4]),
+                        }
+                    }
+                }
+
+                return {
+                    type: matches[1],
+                    coords: {
+                        x: parseFloat(matches[2]),
+                        y: parseFloat(matches[3]),
+                        z: parseFloat(matches[4]),
+                    },
+                    steps: {
+                        a: parseFloat(matches[5]),
+                        b: parseFloat(matches[6]),
+                        c: parseFloat(matches[7]),
+                    }
+                }
+            }
+
+            return 'unknown error';
+        };
+
+        // send the comand
+        return sh.command.get(ip, what, settings);
+    };
+
+    /**
+    * Get current position.
+    * @method sh.command.position
+    * @param  {String}  ip        Board ip.
+    * @param  {Object}  settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.position = function(ip, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set the command
+        var what = 'pos';
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            raw = raw.trim();
+
+            // split on new lines
+            var lines = raw.split('\n');
+
+            var i, il, line, key, positions = {};
+
+            for (i = 0, il = lines.length; i < il; i++) {
+                line = lines[i].split(':');
+                key  = line.shift().replace(' ', '_').toLowerCase();
+                line = line.join(':').trim().split(' ');
+
+                positions[key] = {
+                    x: parseFloat(line[0].substr(2)),
+                    y: parseFloat(line[1].substr(2)),
+                    z: parseFloat(line[2].substr(2))
+                };
+            }
+
+            // split response text on new lines
+            return positions;
+        };
+
+        // send the comand
+        return sh.command.get(ip, what, settings);
+    };
+
+    /**
+    * Get work coordinate system.
+    * @method sh.command.wcs
+    * @param  {String}  ip        Board ip.
+    * @param  {Object}  settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.wcs = function(ip, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set the command
+        var what = 'wcs';
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            raw = raw.trim();
+
+            // split on new lines
+            var lines = raw.split('\n');
+
+            var i, il, line, key, wcs = {};
+
+            // extract the first line as current wcs
+            wcs.current = lines.shift().split(':').pop().replace(']', '').trim();
+
+            for (i = 0, il = lines.length; i < il; i++) {
+                line = lines[i].substr(1, lines[i].length - 2).split(/[:,]/);
+                key  = line.shift();
+
+                if (key === 'PRB') {
+                    key = 'prob';
+                }
+                else if (key[0] !== 'G') {
+                    key = key.replace(' ', '_').toLowerCase();
+                }
+
+                wcs[key] = {
+                    x: parseFloat(line[0]),
+                    y: parseFloat(line[1]),
+                    z: parseFloat(line[2])
+                };
+
+                if (key === 'prob') {
+                    wcs[key].ok = !!parseInt(line[3]);
+                }
+            }
+
+            return wcs;
+        };
+
+        // send the comand
+        return sh.command.get(ip, what, settings);
+    };
+
+    /**
+    * Get system state.
+    * @method sh.command.state
+    * @param  {String}  ip        Board ip.
+    * @param  {Object}  settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.state = function(ip, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set the command
+        var what = 'state';
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            raw = raw.trim();
+
+            // remove brackets and split on spaces
+            var parts = raw.substr(1, raw.length - 2).split(' ');
+            var state = {};
+
+            // [G0 G54 G17 G21 G90 G94 M0 M5 M9 T0 F0.]
+            state.move      = parts[0];
+            state.rapid     = state.move === 'G0';
+            state.arc_cw    = state.move === 'G2';
+            state.arc_ccw   = state.move === 'G3';
+            state.wcs       = parts[1];
+            state.plane     = parts[2] === 'G17' ? 'XY' : (parts[2] === 'G18' ? 'ZX' : (parts[2] === 'G19' ? 'YZ' : '--'));
+            state.units     = parts[3] === 'G20' ? 'in' : 'mm';
+            state.mode      = parts[4] === 'G90' ? 'absolute' : 'relative';
+            state.absolute  = state.mode === 'absolute';
+            state.relative  = state.mode === 'relative';
+            state.tool      = parseInt(parts[9].substr(1));
+            state.feed_rate = parseFloat(parts[10].substr(1));
+
+            return state;
+        };
+
+        // send the comand
+        return sh.command.get(ip, what, settings);
+    };
+
+    /**
+    * Get system status.
+    * @method sh.command.status
+    * @param  {String}  ip        Board ip.
+    * @param  {Object}  settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.status = function(ip, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set the command
+        var what = 'status';
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            raw = raw.trim();
+            raw = raw.substr(1, raw.length - 2);
+            raw = raw.replace('MPos:', '').replace('WPos:', '');
+
+            var parts  = raw.split(',');
+            var status = {
+                state: parts[0],
+                machine: {
+                    x: parseFloat(parts[1]),
+                    y: parseFloat(parts[2]),
+                    z: parseFloat(parts[3]),
+                },
+                world: {
+                    x: parseFloat(parts[4]),
+                    y: parseFloat(parts[5]),
+                    z: parseFloat(parts[6]),
+                }
+            };
+
+            return status;
+        };
+
+        // send the comand
+        return sh.command.get(ip, what, settings);
+    };
+
+    /**
+    * Switch.
+    * @method sh.command.switch
+    * @param  {String}  ip        Board ip.
+    * @param  {String}  device    Device ex.: 'fan' or 'misc'.
+    * @param  {String}  value     State [on|off] or value.
+    * @param  {Object}  settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.switch = function(ip, device, value, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set the command
+        var command = 'switch ' + device + ' ' + value;
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            raw = raw.trim();
+
+            if (raw.indexOf('is not a known switch device') !== -1) {
+                return raw;
+            }
+
+            // return message
+            return { message: raw };
+        };
+
+        // send the comand
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Get network config.
+    * @method sh.command.net
+    * @param  {String}  ip        Board ip.
+    * @param  {Object}  settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.net = function(ip, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set the command
+        var command = 'net';
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            raw = raw.trim();
+
+            var matches = raw.match(/IP Addr:([^\n]+)\nIP GW:([^\n]+)\nIP mask:([^\n]+)\nMAC Address:([^\n]+)/);
+
+            if (matches) {
+                return {
+                    ip     : matches[1].trim(),
+                    gateway: matches[2].trim(),
+                    mask   : matches[3].trim(),
+                    mac    : matches[4].trim()
+                }
+            }
+
+            // return message
+            return { message: raw };
+        };
+
+        // send the comand
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Remount...
+    * @method sh.command.remount
+    * @param  {String}  ip        Board ip.
+    * @param  {Object}  settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.remount = function(ip, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set the command
+        var command = 'remount';
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            return { message: raw.trim() };
+        };
+
+        // send the comand
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Calculate the Steinhart Hart coefficients for a thermistor.
+    * @method sh.command.thermistorCalc
+    * @param  {String}                             ip                Board ip.
+    * @param  {String}                             values            Thermistor values separated by commas 'T1,R1,T2,R2,T3,R3'.
+    * @param  {Object}                             settings          See "{@link sh.network.command}.settings".
+    * @param  {Integer}                            settings.storeto  Store the results to thermistor n.
+    * @param  {Boolean}                            settings.save     Save the stored results to override-config (storeto must be set).
+    * @param  {sh.command.thermistorSaveCallback}  settings.onsave   Called when the values was saved.
+    * @return {XMLHttpRequest}
+    */
+    sh.command.thermistorCalc = function(ip, values, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // store to thermistor n
+        var storeto = '';
+
+        if (settings.storeto || settings.storeto === 0) {
+            storeto = '-s' + settings.storeto + ' ';
+        }
+
+        // set the command
+        var command = 'calc_thermistor ' + storeto + values;
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            raw = raw.trim();
+
+            if (raw.indexOf('Usage: calc_thermistor') === 0) {
+                return raw;
+            }
+
+            var lines   = raw.split('\n');
+            var result  = lines.shift().trim();
+            var message = lines.shift().trim();
+            var matches = result.match(/Steinhart Hart coefficients: *I(.*)J(.*)K(.*)/);
+
+            if (matches) {
+                var I = matches[1].trim();
+                var J = matches[2].trim();
+                var K = matches[3].trim();
+
+                if (I === 'nan' || J === 'nan' || K === 'nan') {
+                    return 'invalid input values';
+                }
+
+                result = { I: parseFloat(I), J: parseFloat(J), K: parseFloat(K) };
+            }
+
+            if (settings.save && storeto !== '') {
+                sh.network.command(ip, 'M500', {
+                    onresponse: function(response) {
+                        if (settings.onsave) {
+                            settings.onsave.call(this, response);
+                        }
+                    }
+                });
+            }
+
+            return { message: message, result: result };
+        };
+
+        // send the comand
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Callback called by {@link sh.command.thermistorCalc} when the values was saved.
+    * @callback sh.command.thermistorSaveCallback
+    * @param    {Object} response The response object provided by the {@link sh.network.responseCallback}.
+    */
+
+    /**
+    * Get the predefined thermistors.
+    * @method sh.command.thermistors
+    * @param  {String}  ip        Board ip.
+    * @param  {Object}  settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.thermistors = function(ip, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set the command
+        var command = 'thermistors';
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            var lines   = raw.split('\n');
+            var result  = { table: {}, beta: {} };
+            var pointer = result.table;
+
+            var i, il, line, matches, name, value;
+
+            for (i = 0, il = lines.length; i < il; i++) {
+                line    = lines[i].trim();
+                matches = line.match(/^([0-9]+) - (.*)/);
+
+                if (line.indexOf('Beta table') !== -1) {
+                    pointer = result.beta;
+                    continue;
+                }
+
+                if (matches) {
+                    name  = matches[2].trim();
+                    value = parseFloat(matches[1].trim());
+
+                    pointer[name] = value;
+                }
+            }
+
+            return result;
+        };
+
+        // send the comand
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Get md5 sum of the given file.
+    * @method sh.command.md5sum
+    * @param  {String}  ip        Board ip.
+    * @param  {String}  path      Relative or absolute path to file.
+    * @param  {Object}  settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.md5sum = function(ip, path, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set the command
+        var command = 'md5sum ' + path;
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            raw = raw.trim();
+
+            if (raw.indexOf('File not found') !== -1) {
+                return raw;
+            }
+
+            var parts = raw.split(' ');
+
+            return {
+                md5 : parts.shift().trim(),
+                file: parts.shift().trim()
+            };
+        };
+
+        // send the comand
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Play a gcode file.
+    * @method sh.command.play
+    * @param  {String}   ip                Board ip.
+    * @param  {String}   path              Relative or absolute path to file.
+    * @param  {Object}   settings          See "{@link sh.network.command}.settings".
+    * @param  {Boolean}  settings.verbose  Verbose output {@default false}.
+    * @return {XMLHttpRequest}
+    */
+    sh.command.play = function(ip, path, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        var verbose = settings.verbose ? ' -v' : '';
+
+        // set the command
+        var command = 'play ' + path + verbose;
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            raw = raw.trim();
+
+            if (! raw.length) {
+                return 'Alarm';
+            }
+
+            if (raw.indexOf('File not found') !== -1) {
+                return raw;
+            }
+
+            if (raw.indexOf('Currently printing') !== -1) {
+                return raw;
+            }
+
+            var lines = raw.split('\n');
+            var file  = lines.shift().split(' ').pop().trim();
+            var size  = -1;
+
+            if (raw.indexOf('WARNING') === -1) {
+                size = parseFloat(lines.shift().split(' ').pop().trim());
+            }
+
+            return { file: file, size: size };
+        };
+
+        // send the comand
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Get progress of current play.
+    * @method sh.command.progress
+    * @param  {String}   ip        Board ip.
+    * @param  {Object}   settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.progress = function(ip, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set the command
+        var command = 'progress';
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            raw = raw.trim();
+
+            if (! raw.length) {
+                return 'Alarm';
+            }
+
+            if (raw.indexOf('Not currently playing') !== -1) {
+                return raw;
+            }
+
+            if (raw.indexOf('File size is unknown') !== -1) {
+                return raw;
+            }
+
+            if (raw.indexOf('SD print is paused at') !== -1) {
+                var parts = raw.split(' ');
+
+                return {
+                    paused: true,
+                    total : parseFloat(parts.pop().trim()),
+                    played: parseFloat(parts.pop().trim())
+                };
+            }
+
+            // file: %s, %u %% complete, elapsed time: %lu s, est time: %lu s
+            if (raw.indexOf('file:') === 0) {
+                var parts = raw.split(' ');
+
+                return {
+                    paused  : false,
+                    file    : parts[2].substr(0, parts[2].length - 2),
+                    complete: parseFloat(parts[3]),
+                    elapsed : parseFloat(parts[8]),
+                    esteemed: parts[12] ? parseFloat(parts[12]) : Infinity,
+                };
+            }
+        };
+
+        // send the comand
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Abort currently playing file.
+    * @method sh.command.abort
+    * @param  {String}   ip        Board ip.
+    * @param  {Object}   settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.abort = function(ip, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set the command
+        var command = 'abort';
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            raw = raw.trim();
+
+            if (! raw.length) {
+                return 'Alarm';
+            }
+
+            if (raw.indexOf('Not currently playing') !== -1) {
+                return raw;
+            }
+
+            return { message: raw };
+        };
+
+        // send the comand
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Suspend a print in progress.
+    * @method sh.command.suspend
+    * @param  {String}   ip        Board ip.
+    * @param  {Object}   settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.suspend = function(ip, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set the command
+        var command = 'suspend';
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            raw = raw.trim();
+
+            if (! raw.length) {
+                return 'Alarm';
+            }
+
+            if (raw.indexOf('Already suspended') !== -1) {
+                return raw;
+            }
+
+            return { message: raw };
+        };
+
+        // send the comand
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Resume the suspended print.
+    * @method sh.command.resume
+    * @param  {String}   ip        Board ip.
+    * @param  {Object}   settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.resume = function(ip, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set the command
+        var command = 'resume';
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            raw = raw.trim();
+
+            if (! raw.length) {
+                return 'Alarm';
+            }
+
+            if (raw.indexOf('Not suspended') !== -1) {
+                return raw;
+            }
+
+            if (raw.indexOf('Resume aborted by kill') !== -1) {
+                return 'Resume aborted by kill';
+            }
+
+            var lines = raw.split('\n');
+
+            // TODO: parse response
+            // REF: https://github.com/Smoothieware/Smoothieware/blob/8cbd981e85c918e059a6e68d70fbf3cdad0f8ca5/src/modules/utils/player/Player.cpp#L614
+
+            return { lines: lines };
+        };
+
+        // send the comand
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Reset alarm.
+    * @method sh.command.resetAlarm
+    * @param  {String}   ip        Board ip.
+    * @param  {Object}   settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.resetAlarm = function(ip, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set the command
+        var command = '$X';
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            return { message: 'unlocked' };
+        };
+
+        // send the comand
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Send ok (ping).
+    * @method sh.command.ok
+    * @param  {String}   ip        Board ip.
+    * @param  {Object}   settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.ok = function(ip, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // set the command
+        var command = 'ok';
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            return { message: raw.trim() };
+        };
+
+        // send the comand
+        return sh.network.command(ip, command, settings);
+    };
+
+    /**
+    * Ping.
+    * @method sh.command.ping
+    * @param  {String}   ip        Board ip.
+    * @param  {Object}   settings  See "{@link sh.network.command}.settings".
+    * @return {XMLHttpRequest}
+    */
+    sh.command.ping = function(ip, settings) {
+        // defaults settings
+        settings = settings || {};
+
+        // default response parser callback
+        settings.parser = settings.parser || function(raw) {
+            return { message: 'pong' };
+        };
+
+        // send the comand
+        return sh.command.ok(ip, settings);
+    };
+
+})();
+
+</script>
+
+
     <!-- Core Fabrica object -->
 <script type='text/javascript'>
 // Core fabrica object, similar to Smoothie's "kernel", holds all the screens
@@ -343,6 +5054,7 @@ var Fabrica = Class({
     // Constructor method
     create: function(){
         this.screens = {};
+        this.screen_stack = [];
     },
 
     // Add a new screen to the list
@@ -360,7 +5072,16 @@ var Fabrica = Class({
                 }
             });
         });
-    }
+    },
+
+    // A screen was entered, remember it is the current screen, and add it to the stack
+    entered_screen: function( screen ){
+        // Remember the current screen
+        this.current_screen = screen;
+
+        // Push the current screen to the stack
+        this.screen_stack.push( screen );
+    } 
 
 });
 
@@ -379,12 +5100,58 @@ var fabrica = new Fabrica();
 var Screen = Class({
 
     display: function(name){
-        // Save screen html
+        // Save screen html and name
         this.html = $("#" + name);
+        this.name = name;
+
+        // Warn the core this screen was entered
+        fabrica.entered_screen(this);
 
         // Display this screen 
         $("screen").addClass('hidden');
         this.html.removeClass('hidden');
+
+        // Setup help for this screen
+        this.setup_help();
+
+        // Setup back button for this screen
+        this.setup_back();
+    },
+
+    setup_help: function(){
+        // Only register if the help modal exists
+        this.help_modal = $("#" + this.name + "_help");
+        if( this.help_modal.length == 0 ){
+            this.html.find(".btn-help").hide();
+            return; 
+        }
+
+        // Only register for a button if there is a button
+        var _that = this;
+        this.html.find(".btn-help").off().click(function(button){
+            _that.enter_help();
+        });
+    },
+
+    setup_back: function(){
+        // Add back button handler
+        var _that = this;
+        this.html.find(".btn-back").off().click(function(){ 
+            _that.go_back(); 
+        });
+    },
+
+    go_back: function(){
+        // Remove current screen from the stack
+        fabrica.screen_stack.pop();
+
+        // Remove the previous screen, and enter it
+        fabrica.screen_stack.pop().enter();
+    },
+
+    enter_help: function(){
+        // Show the modal for the help screen
+        this.help_modal.modal();
     }
 
 
@@ -488,6 +5255,24 @@ var Configuration = Class({
 
         }, this);
 
+    },
+
+    // Extract a configuration file section
+    get_section: function( selector ){
+        var lines_found = [];
+        var in_section = false;
+        this.file.split("\n").forEach(function(line){
+            if( in_section ){
+                if( line.substr(0, 2) == "##" ){ in_section = false; return; }
+                lines_found.push( line ); 
+            }else{
+                if( line.substr(0,selector.length) == selector ){ 
+                    in_section = true; 
+                    lines_found.push( line ); 
+                }
+            }
+        });
+        return(lines_found);
     }
 
 });
@@ -509,9 +5294,8 @@ var ConnectionScreen = Screen.extend({
         this.display('connection_screen');
 
         // Add handlers
-        this.html.find(".btn-connect").click(function(){ fabrica.screens.connection.attempt_connection(); });
-
-        // TODO : Add auto-detection of IP and remembering last-used IPs
+        this.html.find(".btn-connect").off().click(function(){ fabrica.screens.connection.attempt_connection(); });
+        this.html.find(".btn-start-search").off().click(function(){ fabrica.screens.network_scan.enter(); });
     },
 
     attempt_connection: function(){
@@ -531,6 +5315,52 @@ var ConnectionScreen = Screen.extend({
 });
 
 fabrica.add_screen( 'connection', new ConnectionScreen() );
+
+
+</script>
+
+    <!-- Network scan screen -->
+<script type='text/javascript'>
+// Network scan screen : allows the user to start a search for active boards on the local network
+
+var NetworkScanScreen = Screen.extend({
+    enter: function(){
+        // Display this screen
+        this.display('network_scan_screen');
+        this.html.find(".scan-ongoing").hide();
+       
+        // Set up button 
+        this.html.find(".btn-scan").off().click(function(){ fabrica.screens.network_scan.start_scanning(); });
+    },
+
+    start_scanning: function(){
+        // Start scanning the network for boards
+        var _that = this;
+        var expression = this.html.find(".input-expression").val();
+        this.html.find(".scan-info").hide();
+        this.html.find(".scan-ongoing").show();
+        this.html.find(".found-machines").hide();
+
+        // Start the scan 
+        sh.scanner.scan(expression,{
+            onprogress: function(ip, version){
+                _that.html.find(".currently-scanning").text(ip);
+            },
+            onboard: function(board){
+                console.log(board);
+               _that.html.find(".found-machines").show();
+               _that.html.find(".machine-list").append(
+                   $("<tr></tr>").append(
+                       $("<td></td>").text(board.branch), $("<td></td>").text(board.date), $("<td></td>").text(board.hash), $("<td></td>").text(board.mcu), $("<td></td>").text(board.clock),$("<button></button>").addClass("btn btn-default").text("Connect to this board")
+                   )
+               );
+            }
+        });
+    }
+
+});
+
+fabrica.add_screen( 'network_scan', new NetworkScanScreen() );
 
 
 </script>
@@ -581,7 +5411,7 @@ var WelcomeScreen = Screen.extend({
         //TODO : Make "do not show this next time" actually do what it says
 
         // Add handler
-        this.html.find(".btn_next").click(function(){ fabrica.screens.main.enter(); });
+        this.html.find(".btn_next").off().click(function(){ fabrica.screens.main.enter(); });
     }, 
 
     on_initialization_complete: function(){
@@ -606,8 +5436,9 @@ var MainScreen = Screen.extend({
         this.display('main_screen'); 
         
         // Set handlers
-        this.html.find(".btn-control").click(function(){ fabrica.screens.control.enter(); });
-        this.html.find(".btn-make"   ).click(function(){ fabrica.screens.make.enter(); });
+        this.html.find(".btn-control"      ).off().click(function(){ fabrica.screens.control.enter(); });
+        this.html.find(".btn-make"         ).off().click(function(){ fabrica.screens.make.enter(); });
+        this.html.find(".btn-configuration").off().click(function(){ fabrica.screens.configuration.enter(); });
 
     }
 
@@ -628,13 +5459,9 @@ var ControlScreen = Screen.extend({
         // Display this screen
         this.display('control_screen');
 
-        // Add handlers
-        this.html.find(".btn-back").click(function(){ fabrica.screens.main.enter(); });
-        
-        this.html.find(".btn-move").click(function(){ fabrica.screens.move.enter(); });
- 
+        // Setup button clicks       
+        this.html.find(".btn-move").off().click(function(){ fabrica.screens.move.enter(); });
     },
-
 
 });
 
@@ -651,9 +5478,6 @@ var MoveScreen = Screen.extend({
         // Display this screen
         this.display('move_screen');
 
-        // Add handlers
-        this.html.find(".btn-back").click(function(){ fabrica.screens.control.enter(); });
-
     },
 
 });
@@ -664,8 +5488,192 @@ fabrica.add_screen('move', new MoveScreen());
 
 </script>
 
+    <!-- Configuration screen -->
+<script type='text/javascript'>
+// Configuration screen : lists different configuration activities and allows to select which to use
+
+var ConfigurationScreen = Screen.extend({
+    enter: function(){
+        // Display this screen
+        this.display('configuration_screen');
+
+        // Setup button clicks       
+        this.html.find(".btn-raw-configuration").off().click(function(){ fabrica.screens.raw_configuration.enter(); });
+    },
+
+});
+
+fabrica.add_screen('configuration', new ConfigurationScreen()); 
 
 
+</script>
+
+    <!-- Raw Configuration screen -->
+<script type='text/javascript'>
+// Raw configuration screen : allows direct editing of configuration options
+
+var RawConfigurationScreen = Screen.extend({
+
+    enter: function(){
+        // Display this screen
+        this.display('raw_configuration_screen');
+
+        // Set up sections
+        this.sections = [
+            { name: "Robot",                selector: "## Robot",        description: "Basic motion" },
+            { name: "System",               selector: "## System",       description: "System settings" },
+            { name: "Extruder",             selector: "## Extruder",     description: "Extruder motors" }, 
+            { name: "Laser",                selector: "## Laser",        description: "Laser power control"},
+            { name: "Temperature control",  selector: "## Temperature",  description: "Temperature regulation, typically for hotends and heated beds"},
+            { name: "Switch",               selector: "## Switch",       description: "Map inputs/outputs and commands"},
+            { name: "Temperature switch",   selector: "## Temperaturesw",description: "Toggle outputs at given temperatures"},
+            { name: "Endstops",             selector: "## Endstops",     description: "Homing, endstops and limit switches"},
+            { name: "Z-probe",              selector: "## Z-probe",      description: "Probing, calibration and levelling"},
+            { name: "Panel",                selector: "## Panel",        description: "Panels and displays"},
+            { name: "Custom menus",         selector: "## Custom menus", description: "Custom menu entries"},
+            { name: "Network",              selector: "## Network",      description: "Ethernet and web interface"}
+        ];
+
+        // Display sections in the array
+        this.html.find(".section_list .section_line").remove();
+        var line_template = this.html.find(".section_line");
+        var _that = this;
+        $.each( this.sections, function( index, line ){
+            var new_line = line_template.clone();
+            new_line.removeClass("hidden");
+            new_line.find(".section-button").text( line.name ).click(function(){
+                fabrica.screens.raw_configuration_section.enter( line );
+            });
+            new_line.find(".section-description").text( line.description );
+            _that.html.find(".section_list").append(new_line);
+        });   
+
+    },
+
+});
+
+fabrica.add_screen('raw_configuration', new RawConfigurationScreen()); 
+
+// Raw configuration section screen : select lines to edit in a specific section of the screen
+
+var RawConfigurationSectionScreen = Screen.extend({
+
+    enter: function( section ){
+        // Remember section in case we come back
+        if( section !== undefined ){
+            this.current_section = section;
+        }
+
+        // Display this screen
+        this.display('raw_configuration_section_screen');
+
+        // Set up screen
+        this.html.find(".section_name").text( this.current_section.name );
+
+        // Get configuration file section
+        this.lines = fabrica.machine.config.get_section( this.current_section.selector );
+
+        // Display list of options
+        this.html.find(".option_list .option_line").remove();
+        var line_template = this.html.find(".option_line");
+        var _that = this;
+        $.each( this.lines, function( index, line ){
+            var parsed = _that.parse_line(line);
+            var new_line = line_template.clone();
+            new_line.removeClass("hidden");
+            // TODO : Do the color properly with css files, I wasn't able to
+            if( parsed.is_split ){
+                new_line.find(".option_name").text( parsed.option ).css('color', '#110077');
+                new_line.find(".option_value").text( parsed.value ).css('color', '#770011');
+                new_line.find(".option_comment").text( parsed.comment ).css('color', '#888');
+                if( parsed.option.substr(0,1) == '#' ){
+                    new_line.find(".option_name").css('color', '#888');
+                    new_line.find(".option_value").css('color', '#888');
+                }
+                if( parsed.value != '' ){
+                    new_line.find("a").click(function(){
+                        fabrica.screens.raw_configuration_option.enter(parsed);
+                    });
+                }else{
+                    new_line.find(".option_button").remove();
+                    new_line.find(".option_comment").attr('colspan',2);
+                }
+            }else{
+                new_line.find(".option_name").remove();
+                new_line.find(".option_value").remove();
+                new_line.find(".option_button").remove();
+                new_line.find(".option_comment").text( parsed.comment ).css('color', '#888');
+                new_line.find(".option_comment").attr('colspan',4);
+            }
+            _that.html.find(".option_list").append(new_line);
+        });   
+
+    },
+
+    parse_line: function( line ){
+        var splitted = line.split(/\s+/);
+        var parsed = {option: '', value:'', comment:'', is_split: true};
+        if( line.substr(0,2) == '# ' ){ parsed.comment = line; parsed.is_split = false; return parsed; }
+        if( line.substr(0,2) == '##' ){ parsed.comment = line; parsed.is_split = false; return parsed; }
+        if( line.substr(0,2) == '  ' ){ parsed.comment = line; parsed.is_split = true;  return parsed; }
+        if( line.length == 0 ){ parsed.is_split = false; return parsed; }
+        if( parsed[0] == '' ){ parsed.comment = line; return parsed; }
+        var parsed = {
+            option: splitted.shift(), 
+            value: splitted.shift(), 
+            comment: splitted.join(" "), 
+            is_split: true
+        };
+        return parsed;
+    }
+
+});
+fabrica.add_screen('raw_configuration_section', new RawConfigurationSectionScreen()); 
+
+// Raw configuration option screen : edit a specific option's value
+
+var RawConfigurationOptionScreen = Screen.extend({
+
+    enter: function( line ){
+        // Display this screen
+        this.display('raw_configuration_option_screen');
+
+        // Set up screen
+        this.html.find(".option_name").text( line.option );
+        this.html.find(".option_current_value").text( line.value );
+    
+        // Get option definitions
+        var definitions = $("#option_definitions");       
+
+        // Get option within definitions
+        var definition = {};
+        definitions.find("div.option").each(function(index){
+            if( $(this).attr("name") == line.option ){ definition = $(this); }
+        });
+        // TODO : What to do if no definition of a config option was found ( error message )
+
+        // Display found information
+        this.html.find(".panel-title").text( definition.attr('title') );
+        this.html.find(".panel-body" ).empty().append( definition.find("div.description").clone() );
+
+        // Display the right edition box
+        var type = definition.attr('type');
+        var unit = definition.attr('unit');
+        this.html.find(".edit_box").addClass('hidden');
+        this.html.find(".edit_" + type).removeClass('hidden'); 
+        this.html.find(".option-units").text(unit);
+
+        // TODO : Allow to comment/uncomment line
+        // TODO : Raw edit
+        // TODO : Assisted edit
+
+    }
+
+});
+fabrica.add_screen('raw_configuration_option', new RawConfigurationOptionScreen()); 
+
+
+</script>
 
 
 

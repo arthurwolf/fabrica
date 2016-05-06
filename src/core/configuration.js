@@ -42,6 +42,24 @@ var Configuration = Class({
 
         }, this);
 
+    },
+
+    // Extract a configuration file section
+    get_section: function( selector ){
+        var lines_found = [];
+        var in_section = false;
+        this.file.split("\n").forEach(function(line){
+            if( in_section ){
+                if( line.substr(0, 2) == "##" ){ in_section = false; return; }
+                lines_found.push( line ); 
+            }else{
+                if( line.substr(0,selector.length) == selector ){ 
+                    in_section = true; 
+                    lines_found.push( line ); 
+                }
+            }
+        });
+        return(lines_found);
     }
 
 });
