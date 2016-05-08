@@ -1,12 +1,21 @@
-<screen id="connection_screen" class="hidden">
 
-    <div class="container">
+<script id="connection_screen" type="text/x-handlebars-template">
+<div class="container">
       
       <div class="text-center">
         <h1>Connection</h1>
-        <p class="lead">We are attempting automated network connection. </p>
-        <p class="lead">You can also manually enter the IP address for the machine to connect to bellow :</p>
       </div>
+      <br/>
+      <div> 
+        <p> This interface connects to your controller board over your local network. </p>
+        <p> In order to operate, we need to find where on the network your controller board is located ( it's «IP address» ) </p>
+        <p> This page lets you run a search for that address, enter one manually, or use a previously known address </p>
+      </div>
+      <h2> Automated detection </h2>
+        <p> If you do not know the address for your machine, we can try to automatically locate it </p>
+        <div class="col-md-10"></div> 
+        <button class="col-md-2 btn btn-default btn-start-search"> <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Start a search </button>
+
       <div class="bs-callout bs-callout-danger hidden error-ip">
         <h4>Connection error</h4>
         No answer could be found at the IP address you provided : <kbd></kbd> 
@@ -28,5 +37,5 @@
       </div>
     </nav>
 
-</screen>
+</script>
 

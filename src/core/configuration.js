@@ -20,7 +20,8 @@ var Configuration = Class({
             if( line.match(/^(\s*)\#/g) || line == '' || line.match(/^[\s\n]*$/) ){ return; }
 
             // Separate name from value
-            var match = line.match(/^([\w_\-\.]*)\s+(.*?)\s+\#/); 
+            var match = line.match(/^([\w_\-\.]*)\s+(.*?)(?!\S)/);
+
             var name = match[1];
             var value = match[2];
            

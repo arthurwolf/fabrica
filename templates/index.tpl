@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>fabrica</title>
+    <title>fabrica.</title>
 
     <!-- Bootstrap -->
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
@@ -13,12 +14,17 @@
     <link href="static/css/bootstrap-callouts.css" rel="stylesheet">
     <!-- Fabrica custom CSS -->
     <link href="static/css/fabrica.css" rel="stylesheet">
+    <!-- Bootstrap touchspin -->
+    <link href="static/css/jquery.bootstrap-touchspin.css" rel="stylesheet">
 
   </head>
   <body>
+
+    <div id="screen"> </div>
     
     <!-- HTML files for screens -->
     <link href="src/screens/connection.html" rel="html">
+    <link href="src/screens/network_scan.html" rel="html">
     <link href="src/screens/initialization.html" rel="html">
     <link href="src/screens/welcome.html" rel="html">
     <link href="src/screens/main.html" rel="html">
@@ -32,13 +38,22 @@
 
     <!-- HTML files for miscalenous definitions -->
     <link href="src/screens/configuration/definitions.html" rel="html">
+    <!-- HTML files for pin definitions -->
+    <link href="src/screens/configuration/pin_definitions.html" rel="html">
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="static/js/jquery-2.2.1.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="static/js/bootstrap.min.js"></script>
+     <!-- Bootstrap touchspin-->
+    <script src="static/js/jquery.bootstrap-touchspin.js"></script>
     <!-- Js.class allows more object-oriented javascript -->
     <script src="src/core/js.class/dist/browser/js.class.min.js"></script>
+    <!-- HandleBar JS Template system -->
+    <script src="static/js/handlebar.js"></script>
+
+    <!-- Smoothie Happy ( Smoothie API ) submodule -->
+    <script src="static/js/sh/src/smoothie-happy.js"></script>
 
     <!-- Core Fabrica object -->
     <script src="src/core/fabrica.js"></script>
@@ -51,6 +66,8 @@
 
     <!-- Connection screen -->
     <script src="src/screens/connection.js"></script>
+    <!-- Network scan screen -->
+    <script src="src/screens/network_scan.js"></scrip
     <!-- Initialization screen -->
     <script src="src/screens/initialization.js"></script>
     <!-- Welcome screen -->

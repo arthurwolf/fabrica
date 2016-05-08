@@ -5,4 +5,10 @@ body,html      { height:100%; }
 .fill-height * { height:100%; }
 .fill-height   { height:100%; }
 
+/* Raw configuration option lines colors */
+.option_line .option_name {    color: #110077; } 
+.option_line .option_value {   color: #770011; } 
+.option_line .option_comment { color: #888; } 
+
+
 
