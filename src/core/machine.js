@@ -27,6 +27,9 @@ var Machine = Class({
         // Tell the system that a new connection was established
         fabrica.call_event('on_succesful_connection');
 
+        // Suspend in case a file is being played
+        $.post("http://" + this.ip + "/command", "suspend\n");
+
         // Next step is obtaining the configuration file from the SD card
         // TODO : Handle errors
         $.ajax(this.address + "/sd/config").done(function(file){
@@ -39,6 +42,9 @@ var Machine = Class({
             // Parsing done
             fabrica.call_event('on_config_parse_end');
         });
+
+        // Resume from the suspend we sent earlier
+        $.post("http://" + this.ip + "/command", "resume\n");
     },
 
     upload_file: function( file, filename ){
