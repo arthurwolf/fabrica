@@ -35,6 +35,7 @@
     @@include('src/interfaces/fabrica/core/initialization.html')
     @@include('src/interfaces/fabrica/core/welcome.html')
     @@include('src/interfaces/fabrica/main.html')
+    @@include('src/interfaces/fabrica/activity.html')
     @@include('src/interfaces/fabrica/control/control.html')
     @@include('src/interfaces/fabrica/control/move.html')
     @@include('src/interfaces/fabrica/control/home.html')
@@ -99,6 +100,8 @@
     <script src="src/interfaces/fabrica/core/welcome.js" inline></script>
     <!-- Main screen -->
     <script src="src/interfaces/fabrica/main.js" inline></script>
+    <!-- Activity  screen -->
+    <script src="src/interfaces/fabrica/activity.js" inline></script>
     <!-- Control screen -->
     <script src="src/interfaces/fabrica/control/control.js" inline></script>
     <!-- Move screen -->
