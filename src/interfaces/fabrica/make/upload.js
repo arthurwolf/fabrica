@@ -32,7 +32,8 @@ var UploadScreen = Screen.extend({
 
         // Setup button clicks
 
-        this.html.find(".btn-upload-file").off().click(function(){
+        this.html.find(".btn-upload-file").off().click(function(e){
+            e.preventDefault();
 
             // Make sure the user entered a valid filename
             if(_that.html.find(".file-name-input").val().match(/ /g)){ bootbox.alert("Remove the spaces from the file name."); return; }
@@ -63,7 +64,8 @@ var UploadScreen = Screen.extend({
             }
         });
 
-        this.html.find(".btn-upload-another-file").off().click(function(){
+        this.html.find(".btn-upload-another-file").off().click(function(e){
+            e.preventDefault();
             // Reset the screen
 
             // Clear the filename input

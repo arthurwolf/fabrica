@@ -5,8 +5,17 @@ var ConfigurationScreen = Screen.extend({
         // Display this screen
         this.display('configuration_screen');
 
-        // Setup button clicks       
-        this.html.find(".btn-raw-configuration").off().click(function(){ fabrica.screens.raw_configuration.enter(); });
+        // Add handlers
+        this.html.find(".btn-full-configuration").off().click(function(e){
+            e.preventDefault();
+        });
+        this.html.find(".btn-machine-configuration").off().click(function(e){
+            e.preventDefault();
+        });
+        this.html.find(".btn-raw-configuration").off().click(function(e){
+            e.preventDefault();
+            fabrica.screens.raw_configuration.enter();
+        });
     },
 
 });

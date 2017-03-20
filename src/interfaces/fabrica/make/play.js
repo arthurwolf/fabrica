@@ -10,8 +10,14 @@ var PlayScreen = Screen.extend({
 
         // Handle button clicks
         var _that = this;
-        this.html.find(".btn-abort").off().click(function(){ fabrica.machine.send_command("abort"); });
-        this.html.find(".btn-suspend-resume").off().click(function(){ fabrica.machine.send_command( _that.html.find(".btn-suspend-resume").text().toLowerCase() ); });
+        this.html.find(".btn-abort").off().click(function(e){
+            e.preventDefault();
+            fabrica.machine.send_command("abort");
+        });
+        this.html.find(".btn-suspend-resume").off().click(function(e){
+            e.preventDefault();
+            fabrica.machine.send_command( _that.html.find(".btn-suspend-resume").text().toLowerCase() );
+        });
 
         // Hide the file menu and the playing view until we know if we are playing a file or not
         this.html.find(".playing-file").hide();
@@ -36,11 +42,13 @@ var PlayScreen = Screen.extend({
                     var filename = file.replace(".", "-").replace(/(\r\n|\n|\r)/gm,"");
                     file = file.replace(/(\r\n|\n|\r)/gm,"");
                     _that.html.find(".file-list").append( '<a class="btn btn-default col-xs-12 btn-lg btn-'+filename+'" href="#">'+file+'</a>' );
-                    _that.html.find(".btn-"+filename).off().click(function(){ 
+                    _that.html.find(".btn-"+filename).off().click(function(e){
+                        e.preventDefault();
                         _that.html.find(".file-options-modal .modal-body").html("What do you want to do with <b>"+file+"</b>?");
                         _that.html.find(".file-options-modal").modal("show");
 
-                        _that.html.find(".btn-delete-file").off().click(function(){
+                        _that.html.find(".btn-delete-file").off().click(function(e){
+                            e.preventDefault();
                             if(confirm("Are you sure you want to delete " + file + "?")){
                                 // Delete the file and refresh the file list
                                 fabrica.machine.send_command("M30 " + file);
@@ -51,7 +59,8 @@ var PlayScreen = Screen.extend({
                             }
                         });
 
-                        _that.html.find(".btn-play-file").off().click(function(){
+                        _that.html.find(".btn-play-file").off().click(function(e){
+                            e.preventDefault();
                             // Play the file
                             fabrica.machine.send_command("M32 " + file);
 

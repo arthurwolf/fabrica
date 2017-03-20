@@ -16,13 +16,17 @@ var MoveScreen = Screen.extend({
         var _that = this;
         this.buttons.forEach(function(button) {
             ['neg', 'pos'].forEach(function (direction) {
-                _that.html.find(".btn-jog-" + button.axis + "-" + direction).off().click(function(){
-                    fabrica.machine.jog(button.axis, (direction === "neg" ? -1 : 1), _that.html.find(".jog-distance").val(), (button.axis === "Z" ? _that.html.find(".jog-z-feedrate").val() : _that.html.find(".jog-xy-feedrate").val())); 
+                _that.html.find(".btn-jog-" + button.axis + "-" + direction).off().click(function(e){
+                    e.preventDefault();
+                    fabrica.machine.jog(button.axis, (direction === "neg" ? -1 : 1), _that.html.find(".jog-distance").val(), (button.axis === "Z" ? _that.html.find(".jog-z-feedrate").val() : _that.html.find(".jog-xy-feedrate").val()));
                 });
             });
         });
 
-        this.html.find(".btn-motors-off").off().click(function(){ fabrica.machine.send_command("M18"); });
+        this.html.find(".btn-motors-off").off().click(function(e){
+            e.preventDefault();
+            fabrica.machine.send_command("M18");
+        });
     },
 
     // Listen for updated positions

@@ -42,7 +42,8 @@ var Screen = Class({
 
         // Only register for a button if there is a button
         var _that = this;
-        this.html.find(".btn-help").off().click(function(button){
+        this.html.find(".btn-help").off().click(function(e){
+            e.preventDefault();
             _that.enter_help();
         });
     },
@@ -50,7 +51,8 @@ var Screen = Class({
     setup_back: function(){
         // Add back button handler
         var _that = this;
-        this.html.find(".btn-back").off().click(function(){ 
+        this.html.find(".btn-back").off().click(function(e){
+            e.preventDefault();
             _that.go_back(); 
         });
     },

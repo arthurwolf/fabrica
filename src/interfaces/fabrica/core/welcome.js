@@ -11,7 +11,8 @@ var WelcomeScreen = Screen.extend({
         }
 
         // Add handler
-        this.html.find(".btn_next").off().click(function(){
+        this.html.find(".btn_next").off().click(function(e){
+            e.preventDefault();
             fabrica.local_config.set("skip_welcome", $(".skip-welcome").is(':checked'));
             fabrica.navigation.go("/core/main");
         });

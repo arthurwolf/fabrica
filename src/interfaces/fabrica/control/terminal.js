@@ -9,7 +9,10 @@ var TerminalScreen = Screen.extend({
         $(".terminal-output").scrollTop( $(".terminal-output").prop("scrollHeight") );
 
         // Handle button clicks       
-        this.html.find(".btn-terminal-send").off().click(function(){ if($(".terminal-input").val().length > 0){ fabrica.machine.send_command($(".terminal-input").val()); } });
+        this.html.find(".btn-terminal-send").off().click(function(e){
+            e.preventDefault();
+            if($(".terminal-input").val().length > 0){ fabrica.machine.send_command($(".terminal-input").val()); }
+        });
     },
 
     // listen for gcode being sent so that we can show it

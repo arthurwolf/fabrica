@@ -41,8 +41,14 @@ var TemperatureScreen = Screen.extend({
             _that.html.find("."+_that.tabs[tab_content].designator+"-warning").hide();
 
             // Handle button clicks
-            _that.html.find(".btn-"+name+"-set-temperature").off().click(function(){ fabrica.machine.send_command("M" + _that.tabs[tab_content].m_code + " S" + _that.html.find("#" + name + " .tooltip-inner").text()); });
-            _that.html.find(".btn-"+name+"-heater-off").off().click(function(){ fabrica.machine.send_command("M" + _that.tabs[tab_content].m_code + " S0"); });
+            _that.html.find(".btn-"+name+"-set-temperature").off().click(function(e){
+                e.preventDefault();
+                fabrica.machine.send_command("M" + _that.tabs[tab_content].m_code + " S" + _that.html.find("#" + name + " .tooltip-inner").text());
+            });
+            _that.html.find(".btn-"+name+"-heater-off").off().click(function(e){
+                e.preventDefault();
+                fabrica.machine.send_command("M" + _that.tabs[tab_content].m_code + " S0");
+            });
         });
 
         // Apply styling to sliders

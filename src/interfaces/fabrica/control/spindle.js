@@ -6,8 +6,14 @@ var SpindleScreen = Screen.extend({
         this.display('spindle_screen');
 
         // Handle button clicks       
-        this.html.find(".btn-spindle-on").off().click(function(){ fabrica.machine.send_command("M3"); });
-        this.html.find(".btn-spindle-off").off().click(function(){ fabrica.machine.send_command("M5"); });
+        this.html.find(".btn-spindle-on").off().click(function(e){
+            e.preventDefault();
+            fabrica.machine.send_command("M3");
+        });
+        this.html.find(".btn-spindle-off").off().click(function(e){
+            e.preventDefault();
+            fabrica.machine.send_command("M5");
+        });
     },
 
 });

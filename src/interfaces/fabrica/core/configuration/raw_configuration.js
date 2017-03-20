@@ -24,7 +24,8 @@ var RawConfigurationScreen = Screen.extend({
         this.display('raw_configuration_screen');
 
         // Set up button clicks
-        $(".section-button").click(function(){
+        $(".section-button").click(function(e){
+            e.preventDefault();
             fabrica.screens.raw_configuration_section.enter( $(this).attr('selector'), $(this).text());
         });
 
@@ -49,7 +50,8 @@ var RawConfigurationSectionScreen = Screen.extend({
         this.display('raw_configuration_section_screen');
 
         // Set up button clicks
-        $(".option_line .btn").click(function(){
+        $(".option_line .btn").click(function(e){
+            e.preventDefault();
             fabrica.screens.raw_configuration_option.enter({option:$(this).attr('option'), value:$(this).attr('value')});
         });
     },

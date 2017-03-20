@@ -6,8 +6,14 @@ var ExtruderScreen = Screen.extend({
         this.display('extruder_screen');
 
         // Handle button clicks       
-        this.html.find(".btn-extrude").off().click(function(){ fabrica.machine.jog("E", 1, $(".e-distance").val(), $(".e-feedrate").val()); });
-        this.html.find(".btn-retract").off().click(function(){ fabrica.machine.jog("E", -1, $(".e-distance").val(), $(".e-feedrate").val()); });
+        this.html.find(".btn-extrude").off().click(function(e){
+            e.preventDefault();
+            fabrica.machine.jog("E", 1, $(".e-distance").val(), $(".e-feedrate").val());
+        });
+        this.html.find(".btn-retract").off().click(function(e){
+            e.preventDefault();
+            fabrica.machine.jog("E", -1, $(".e-distance").val(), $(".e-feedrate").val());
+        });
     },
 
 });

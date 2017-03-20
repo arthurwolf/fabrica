@@ -15,7 +15,10 @@ var HomeScreen = Screen.extend({
         // Handle button clicks
         var _that = this;
         this.buttons.forEach(function(button) {
-            _that.html.find(".btn-home-" + button.axis).off().click(function(){ fabrica.machine.home( button.title ); }); 
+            _that.html.find(".btn-home-" + button.axis).off().click(function(e){
+                e.preventDefault();
+                fabrica.machine.home( button.title );
+            });
         });
     }
 
