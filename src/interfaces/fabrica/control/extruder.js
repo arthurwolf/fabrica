@@ -12,4 +12,6 @@ var ExtruderScreen = Screen.extend({
 
 });
 
-fabrica.add_screen('extruder', new ExtruderScreen()); 
+screens.extruder = new ExtruderScreen(); 
+
+

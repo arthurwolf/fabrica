@@ -12,4 +12,7 @@ var SpindleScreen = Screen.extend({
 
 });
 
-fabrica.add_screen('spindle', new SpindleScreen()); 
+screens.spindle = new SpindleScreen(); 
+
+
+

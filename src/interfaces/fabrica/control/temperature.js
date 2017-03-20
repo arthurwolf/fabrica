@@ -72,4 +72,7 @@ var TemperatureScreen = Screen.extend({
 
 });
 
-fabrica.add_screen('temperature', new TemperatureScreen()); 
+screens.temperature = new TemperatureScreen(); 
+
+
+

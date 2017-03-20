@@ -13,15 +13,11 @@ var WelcomeScreen = Screen.extend({
         // Add handler
         this.html.find(".btn_next").off().click(function(){
             fabrica.local_config.set("skip_welcome", $(".skip-welcome").is(':checked'));
-            fabrica.screens.main.enter();
+            fabrica.navigation.go("/core/main");
         });
     }, 
 
-    on_initialization_complete: function(){
-        this.enter();
-    }
-
 }); 
 
-fabrica.add_screen( 'welcome', new WelcomeScreen() );
+screens.welcome = new WelcomeScreen();
 

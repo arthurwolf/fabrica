@@ -6,14 +6,17 @@ var ControlScreen = Screen.extend({
         this.display('control_screen');
 
         // Setup button clicks       
-        this.html.find(".btn-move").off().click(function(){ fabrica.screens.move.enter(); });
-        this.html.find(".btn-home").off().click(function(){ fabrica.screens.home.enter(); });
-        this.html.find(".btn-spindle").off().click(function(){ fabrica.screens.spindle.enter(); });
-        this.html.find(".btn-temperature").off().click(function(){ fabrica.screens.temperature.enter(); });
-        this.html.find(".btn-extruder").off().click(function(){ fabrica.screens.extruder.enter(); });
-        this.html.find(".btn-terminal").off().click(function(){ fabrica.screens.terminal.enter(); });
+        this.html.find(".btn-move").off().click(function(){ fabrica.navigation.go("/control/move"); });
+        this.html.find(".btn-home").off().click(function(){ fabrica.navigation.go("/control/home"); });
+        this.html.find(".btn-spindle").off().click(function(){ fabrica.navigation.go("/control/spindle"); });
+        this.html.find(".btn-temperature").off().click(function(){ fabrica.navigation.go("/control/temperature"); });
+        this.html.find(".btn-extruder").off().click(function(){ fabrica.navigation.go("/control/extruder"); });
+        this.html.find(".btn-terminal").off().click(function(){ fabrica.navigation.go("/control/terminal"); });
     },
 
 });
 
-fabrica.add_screen('control', new ControlScreen()); 
+screens.control = new ControlScreen(); 
+
+
+

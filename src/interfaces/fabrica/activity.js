@@ -2,12 +2,16 @@
 
 var ActivityScreen = Screen.extend({
 
-    enter: function(){
+    enter: function(target_activity){
+        // Display this screen
+        this.display('activity_screen');
 
+        console.log("#1 : entering activity " + target_activity + " from " + activity );
+        $("#activity_iframe").attr("src", "activities/" + target_activity + ".html");
     }
 
 });
 
-fabrica.add_screen( 'activity', new ActivityScreen() );
+screens.activity = new ActivityScreen();
 
 

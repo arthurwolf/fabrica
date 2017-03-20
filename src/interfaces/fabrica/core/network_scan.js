@@ -9,7 +9,7 @@ var NetworkScanScreen = Screen.extend({
         this.display('network_scan_screen');
 
         // Set up button 
-        this.html.find(".btn-scan").off().click(function(){ fabrica.screens.network_scan.start_scanning(); });
+        this.html.find(".btn-scan").off().click(function(){ screens.network_scan.start_scanning(); });
     },
 
     start_scanning: function(){
@@ -34,5 +34,5 @@ var NetworkScanScreen = Screen.extend({
 
 });
 
-fabrica.add_screen( 'network_scan', new NetworkScanScreen() );
+screens.network_scan = new NetworkScanScreen();
 

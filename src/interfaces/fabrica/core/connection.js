@@ -11,8 +11,8 @@ var ConnectionScreen = Screen.extend({
         }
 
         // Add handlers
-        this.html.find(".btn-connect").off().click(function(){ fabrica.screens.connection.attempt_connection(); });
-        this.html.find(".btn-start-search").off().click(function(){ fabrica.screens.network_scan.enter(); });
+        this.html.find(".btn-connect").off().click(function(){ screens.connection.attempt_connection(); });
+        this.html.find(".btn-start-search").off().click(function(){ fabrica.navigation.go("/core/network_scan"); });
     },
 
     attempt_connection: function(){
@@ -29,7 +29,12 @@ var ConnectionScreen = Screen.extend({
         html.find(".error-ip kbd").html(html.find(".input-ip").val());
     },
 
+    on_succesful_connection: function(){
+        fabrica.navigation.go("/core/initialization");
+    },
+
+
 });
 
-fabrica.add_screen( 'connection', new ConnectionScreen() );
+screens.connection = new ConnectionScreen();
 

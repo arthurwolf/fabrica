@@ -6,10 +6,10 @@ var ConfigurationScreen = Screen.extend({
         this.display('configuration_screen');
 
         // Setup button clicks       
-        this.html.find(".btn-raw-configuration").off().click(function(){ fabrica.screens.raw_configuration.enter(); });
+        this.html.find(".btn-raw-configuration").off().click(function(){ fabrica.navigation.go("/configuration/raw_configuration"); });
     },
 
 });
 
-fabrica.add_screen('configuration', new ConfigurationScreen()); 
+screens.configuration = new ConfigurationScreen(); 
 

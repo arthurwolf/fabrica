@@ -37,4 +37,7 @@ var MoveScreen = Screen.extend({
     }
 });
 
-fabrica.add_screen('move', new MoveScreen()); 
+screens.move = new MoveScreen(); 
+
+
+

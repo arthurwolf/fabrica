@@ -4,13 +4,10 @@ InitializationScreen = Screen.extend({
     enter: function(){
         // Display this screen
         this.display('initialization_screen'); 
-    },
-
-    on_succesful_connection: function(){
-        this.enter();
         this.html.find(".list-download").removeClass('hidden');
         this.html.find(".progress-bar").width("33%");
     },
+
 
     on_config_parse_begin: function(){
         this.html.find(".list-parse").removeClass('hidden');
@@ -20,9 +17,11 @@ InitializationScreen = Screen.extend({
     on_config_parse_end: function(){
         this.html.find(".list-done").removeClass('hidden');
         this.html.find(".progress-bar").width("100%");
-        fabrica.call_event('on_initialization_complete');
+        fabrica.navigation.go("/core/welcome"); 
     }
 
 });
 
-fabrica.add_screen( 'initialization', new InitializationScreen() );
+screens.initialization = new InitializationScreen();
+
+

@@ -25,22 +25,22 @@ var RawConfigurationScreen = Screen.extend({
 
         // Set up button clicks
         $(".section-button").click(function(){
-            fabrica.screens.raw_configuration_section.enter( $(this).attr('selector'), $(this).text());
+            fabrica.navigation.go("/configuration/raw_configuration_section", {selector: $(this).attr('selector'), name: $(this).text()});
         });
 
     },
 
 });
 
-fabrica.add_screen('raw_configuration', new RawConfigurationScreen()); 
+screens.raw_configuration = new RawConfigurationScreen(); 
 
 // Raw configuration section screen : select lines to edit in a specific section of the screen
 
 var RawConfigurationSectionScreen = Screen.extend({
 
-    enter: function(selector, name ){
+    enter: function(parameters){
         // Remember section in case we come back
-        if( selector !== undefined ){ this.current_section = {'name': name, 'selector': selector}; }
+        if( parameters.selector !== undefined ){ this.current_section = {'name': parameters.name, 'selector': parameters.selector}; }
 
         // Get configuration file section
         this.config = fabrica.machine.config.get_section( this.current_section.selector ).map( this.parse_line );
@@ -50,7 +50,7 @@ var RawConfigurationSectionScreen = Screen.extend({
 
         // Set up button clicks
         $(".option_line .btn").click(function(){
-            fabrica.screens.raw_configuration_option.enter({option:$(this).attr('option'), value:$(this).attr('value')});
+            fabrica.navigation.go("/configuration/raw_configuration_option", {option:$(this).attr('option'), value:$(this).attr('value')});
         });
     },
 
@@ -65,7 +65,8 @@ var RawConfigurationSectionScreen = Screen.extend({
     }
 
 });
-fabrica.add_screen('raw_configuration_section', new RawConfigurationSectionScreen()); 
+
+screens.raw_configuration_section = new RawConfigurationSectionScreen(); 
 
 // Raw configuration option screen : edit a specific option's value
 
@@ -156,7 +157,8 @@ var RawConfigurationOptionScreen = Screen.extend({
     }
 
 });
-fabrica.add_screen('raw_configuration_option', new RawConfigurationOptionScreen()); 
+
+screens.raw_configuration_option = new RawConfigurationOptionScreen(); 
 
 
 

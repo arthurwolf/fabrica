@@ -29,4 +29,7 @@ var TerminalScreen = Screen.extend({
 
 });
 
-fabrica.add_screen('terminal', new TerminalScreen()); 
+screens.terminal = new TerminalScreen(); 
+
+
+

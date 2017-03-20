@@ -110,4 +110,7 @@ var UploadScreen = Screen.extend({
 
 });
 
-fabrica.add_screen('upload', new UploadScreen()); 
+screens.upload = new UploadScreen(); 
+
+
+

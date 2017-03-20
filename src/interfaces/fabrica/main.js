@@ -7,14 +7,14 @@ var MainScreen = Screen.extend({
         this.display('main_screen'); 
         
         // Set handlers
-        this.html.find(".btn-control"      ).off().click(function(){ fabrica.screens.control.enter(); });
-        this.html.find(".btn-make"         ).off().click(function(){ fabrica.screens.make.enter(); });
-        this.html.find(".btn-configuration").off().click(function(){ fabrica.screens.configuration.enter(); });
+        this.html.find(".btn-control"      ).off().click(function(){ fabrica.navigation.go("/control/control"); });
+        this.html.find(".btn-make"         ).off().click(function(){ fabrica.navigation.go("/make/make"); });
+        this.html.find(".btn-configuration").off().click(function(){ fabrica.navigation.go("/configuration/configuration"); });
 
     }
 
 });
 
-fabrica.add_screen( 'main', new MainScreen() );
+screens.main = new MainScreen();
 
 

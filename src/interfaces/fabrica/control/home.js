@@ -22,4 +22,6 @@ var HomeScreen = Screen.extend({
 });
 
 
-fabrica.add_screen('home', new HomeScreen());
+screens.home = new HomeScreen();
+
+

@@ -24,6 +24,12 @@
     <!-- Bootstrap slider -->
     <link href="static/css/bootstrap-slider.min.css" rel="stylesheet" inline>
 
+    <script>
+        // Global track of which activity we are in
+        var activity = "core";
+        var screens = {};
+    </script>
+
   </head>
   <body>
 
@@ -36,18 +42,6 @@
     @@include('src/interfaces/fabrica/core/welcome.html')
     @@include('src/interfaces/fabrica/main.html')
     @@include('src/interfaces/fabrica/activity.html')
-    @@include('src/interfaces/fabrica/control/control.html')
-    @@include('src/interfaces/fabrica/control/move.html')
-    @@include('src/interfaces/fabrica/control/home.html')
-    @@include('src/interfaces/fabrica/control/spindle.html')
-    @@include('src/interfaces/fabrica/control/temperature.html')
-    @@include('src/interfaces/fabrica/control/extruder.html')
-    @@include('src/interfaces/fabrica/control/terminal.html')
-    @@include('src/interfaces/fabrica/make/make.html')
-    @@include('src/interfaces/fabrica/make/play.html')
-    @@include('src/interfaces/fabrica/make/upload.html')
-    @@include('src/interfaces/fabrica/configuration/configuration.html')
-    @@include('src/interfaces/fabrica/configuration/raw_configuration.html')
 
     <!-- html files for help screens -->
     <!-- @@include('src/help/screens/connection.html') -->
@@ -89,11 +83,13 @@
     <script src="src/core/local_config.js" inline></script>
     <!-- Updates machine position, temperature, etc -->
     <script src="src/core/updater.js" inline></script>
+    <!-- Go to activities, screens and pages -->
+    <script src="src/core/navigation.js" inline></script>
 
     <!-- Connection screen -->
     <script src="src/interfaces/fabrica/core/connection.js" inline></script>
     <!-- Network scan screen -->
-    <script src="src/interfaces/fabrica/core/network_scan.js" inline></scrip
+    <script src="src/interfaces/fabrica/core/network_scan.js" inline></script>
     <!-- Initialization screen -->
     <script src="src/interfaces/fabrica/core/initialization.js" inline></script>
     <!-- Welcome screen -->
@@ -102,31 +98,7 @@
     <script src="src/interfaces/fabrica/main.js" inline></script>
     <!-- Activity  screen -->
     <script src="src/interfaces/fabrica/activity.js" inline></script>
-    <!-- Control screen -->
-    <script src="src/interfaces/fabrica/control/control.js" inline></script>
-    <!-- Move screen -->
-    <script src="src/interfaces/fabrica/control/move.js" inline></script>
-    <!-- Home screen -->
-    <script src="src/interfaces/fabrica/control/home.js" inline></script>
-    <!-- Spindle screen -->
-    <script src="src/interfaces/fabrica/control/spindle.js" inline></script>
-    <!-- Temperature screen -->
-    <script src="src/interfaces/fabrica/control/temperature.js" inline></script>
-    <!-- Extruder screen -->
-    <script src="src/interfaces/fabrica/control/extruder.js" inline></script>
-    <!-- Terminal screen -->
-    <script src="src/interfaces/fabrica/control/terminal.js" inline></script>
-    <!-- Make screen -->
-    <script src="src/interfaces/fabrica/make/make.js" inline></script>
-    <!-- Play screen -->
-    <script src="src/interfaces/fabrica/make/play.js" inline></script>
-    <!-- Upload screen -->
-    <script src="src/interfaces/fabrica/make/upload.js" inline></script>
-    <!-- Configuration screen -->
-    <script src="src/interfaces/fabrica/configuration/configuration.js" inline></script>
-    <!-- Raw Configuration screen -->
-    <script src="src/interfaces/fabrica/configuration/raw_configuration.js" inline></script>
-
+    
     <!--removeIf(production)-->
     <!-- Mock module -->
     <script src="static/js/jquery.mockjax.min.js" inline></script>
@@ -135,7 +107,7 @@
 
     <script>
         // Manually enter the first screen
-        fabrica.screens.connection.enter();
+        fabrica.navigation.go("/core/connection");
     </script>
 
   </body>

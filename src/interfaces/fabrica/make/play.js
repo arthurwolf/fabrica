@@ -101,4 +101,7 @@ var PlayScreen = Screen.extend({
     }
 });
 
-fabrica.add_screen('play', new PlayScreen()); 
+screens.play = new PlayScreen(); 
+
+
+

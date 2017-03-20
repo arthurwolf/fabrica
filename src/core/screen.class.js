@@ -57,10 +57,7 @@ var Screen = Class({
 
     go_back: function(){
         // Remove current screen from the stack
-        fabrica.screen_stack.pop();
-
-        // Remove the previous screen, and enter it
-        fabrica.screen_stack.pop().enter();
+        fabrica.navigation.go_back();
     },
 
     enter_help: function(){

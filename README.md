@@ -5,6 +5,13 @@ For a project decription/specification, see https://docs.google.com/document/d/1
 
 Looking for contributors/help ! Contact us !
 
+# current TODO
+
+* Create screens only as needed, destroy screens when no longer needed
+* Access screens by path, not by function call
+* Add coms abstraction that allows talking to an octoprint server or that coms thing laserweb uses
+* Allow URLs to be interpreted, also go to target URL instead of main screen at boot time.
+
 # setting up
 
 Please after cloning the repository, do 
