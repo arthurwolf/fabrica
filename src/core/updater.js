@@ -14,7 +14,7 @@ var Updater = Class({
             if(!fabrica.machine.uploading && fabrica.machine.ip && Object.keys(fabrica.machine.config).length && document.hasFocus()){
                 fabrica.machine.request_update("M105\nM119\nM114.1\nprogress\n", _that.update_received);
             }
-        }, 1000);
+        }, 5000);
     },
 
     // Parse the result of our query. It should contain temperature, endstop, postion, and play data in that order.

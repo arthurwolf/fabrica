@@ -159,5 +159,6 @@ var Machine = Class({
 
 }); 
 
+// TODO : If in activity use the parent's machine instead
 fabrica.machine = new Machine()
 

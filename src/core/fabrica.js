@@ -5,18 +5,11 @@ var Fabrica = Class({
     // Constructor method
     create: function(){
         this.screens = {};
-        this.screen_stack = [];
-    },
-
-    // Add a new screen to the list
-    add_screen: function( name, screen ){
-        this.screens[name] = screen;
-        screen.fabrica = this;
     },
 
     // Call an event upon all modules that want to hear it
     call_event: function( event_name, parameters ){
-        $.each(this.screens, function(name, screen){
+        $.each(screens, function(name, screen){
             $.each(screen, function(property_name, property){
                 if( property_name == event_name ){
                     property.call(screen, parameters);
@@ -29,11 +22,8 @@ var Fabrica = Class({
     entered_screen: function( screen ){
         // Remember the current screen
         this.current_screen = screen;
-
-        // Push the current screen to the stack
-        this.screen_stack.push( screen );
-    } 
-
+    },
+   
 });
 
 // Instantiate a single, global instance
