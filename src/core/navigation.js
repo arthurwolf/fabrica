@@ -31,7 +31,9 @@ var Navigation = Class({
         var page     = path[3] || '';
         var location_changed = false;
         console.log([activity,screen,page]);
-        
+
+        // TODO : Handle activity, screen and page exits
+
         // Go to the right activity
         // TODO : Handle non-existing activities
         if( this.current_activity != activity ){
@@ -44,12 +46,18 @@ var Navigation = Class({
 
         // Go to the right screen
         // TODO : Handle non-existing screens
-        if( this.current_screen != screen ){
+        if( this.current_screen != screen || this.current_page != page ){
             // Go to a new screen
 
             if( this.current_activity == 'core' ){
                 this.current_screen = screen;
-                screens[screen].enter(parameters);
+                if( page == '' ){
+                    // No page specified, enter the screen
+                    screens[screen].enter(parameters);
+                }else{
+                    // Page specified, enter that page
+                    screens[screen][page].call(screens[screen],parameters);
+                }
                 location_changed = true;
             }else{
                 this.current_screen = screen;
@@ -57,11 +65,23 @@ var Navigation = Class({
                     var _that = this;
                     $("#activity_iframe").on("load", function(){
                         _that.iframe_loaded = true;
-                        window.frames[0].screens[screen].enter(parameters);
+                        if( page == '' ){
+                            // No page specified, enter the screen
+                            window.frames[0].screens[screen].enter(parameters);
+                        }else{
+                            // Page specified, enter that page
+                            window.frames[0].screens[screen][page].call(window.frames[0].screens[screen],parameters);
+                        }
                         location_changed = true;
                     });
                 }else{
-                    window.frames[0].screens[screen].enter(parameters);
+                    if( page == '' ){
+                        // No page specified, enter the screen
+                        window.frames[0].screens[screen].enter(parameters);
+                    }else{
+                        // Page specified, enter that page
+                        window.frames[0].screens[screen][page].call(window.frames[0].screens[screen],parameters);
+                    }
                     location_changed = true;
                 }
             }

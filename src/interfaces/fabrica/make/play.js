@@ -3,13 +3,16 @@
 var PlayScreen = Screen.extend({
     enter: function(){
         // Display this screen
-        this.display('play_screen');
+        //this.display('play_screen');
+        var _that = this;
 
         // Get the file list
-        fabrica.machine.send_command("M20");
+        fabrica.machine.get_file_list("/sd/", function(file_list){
+            _that.got_file_list(file_list); 
+        });
 
+        /*
         // Handle button clicks
-        var _that = this;
         this.html.find(".btn-abort").off().click(function(e){
             e.preventDefault();
             fabrica.machine.send_command("abort");
@@ -22,13 +25,30 @@ var PlayScreen = Screen.extend({
         // Hide the file menu and the playing view until we know if we are playing a file or not
         this.html.find(".playing-file").hide();
         this.html.find(".file-manager").hide();
+        */
+
+        // Go to the page for the root of the filesystem
+        fabrica.navigation.go("/make/play/file_list", {path: "/sd/"});
+        console.log("after");
+
+    },
+
+    // File list page
+    file_list: function(parameters){
+        console.log("entering file list page");
+    },
+
+    // When we get a file list
+    got_file_list: function(file_list){
+        console.log(file_list);
     },
 
     // listen for gcode files
     on_gcode_response: function( response ){
-        if(response.includes("Begin file list")){ // Update the file list
             // Empty the file list
             this.html.find(".file-list").empty();
+
+            console.log("gcode response");
 
             var _that = this;
             // Populate the file list
@@ -70,8 +90,7 @@ var PlayScreen = Screen.extend({
                     });    
                 }
             });
-
-        }
+    
     },
 
     on_value_update: function( value ){

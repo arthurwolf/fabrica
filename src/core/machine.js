@@ -153,8 +153,18 @@ var Machine = Class({
         this.send_command(axis.match(/all/gi) ? "G28" : "G28 " + axis);
     },
 
+    // Jog an axis
     jog: function( axis, direction, distance, feedrate ){
         this.send_command("G91\nG0 " + axis + distance*direction + " F" + feedrate + "\nG90");
+    },
+
+    // Get a list of files
+    get_file_list: function( path, callback ){
+        fabrica.machine.send_command("ls -s " + path, function(data){
+            var file_list = data.split("\n").map(function(file){return file.split("\r")[0]});
+            file_list.pop(); 
+            callback.call(null, file_list);
+        });
     }
 
 }); 

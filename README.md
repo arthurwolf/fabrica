@@ -1,18 +1,20 @@
-# fabrica
+# Fabrica
 Simple to use featurefull web interface for digital fabrication machines.
 
 For a project decription/specification, see https://docs.google.com/document/d/1xuLbjVvCkizSkmPvfprBgnlKV7jBn7wQnLto_G5Q-Dw/edit?usp=sharing
 
 Looking for contributors/help ! Contact us !
 
-# current TODO
+# Current TODO
 
 * Create screens only as needed, destroy screens when no longer needed
 * Access screens by path, not by function call
 * Add coms abstraction that allows talking to an octoprint server or that coms thing laserweb uses
 * Allow URLs to be interpreted, also go to target URL instead of main screen at boot time.
+* Create a documentation reader, and package the documentation
+* Fix the play screen to call the machine instead of doing the work itself
 
-# setting up
+# Setting up
 
 Please after cloning the repository, do 
 
@@ -21,7 +23,7 @@ Please after cloning the repository, do
 so the submodules are initialized ( duh ! )
 
 
-## using gulp
+## Using gulp
 
 You need to have Node.js (Node) installed onto your computer before you can install Gulp.  
 If you do not have Node installed already, you can get it by [downloading the package installer from Node's website.](https://nodejs.org/)   
